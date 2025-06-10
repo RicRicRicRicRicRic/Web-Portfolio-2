@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import emailjs from '@emailjs/browser';
-// CORRECTED: Import from 'vue-recaptcha-v3'
 import { useReCaptcha } from 'vue-recaptcha-v3'; 
 
 // State to hold form data
@@ -34,16 +33,25 @@ if (PUBLIC_KEY) {
 }
 
 // Initialize useReCaptcha
-const { executeRecaptcha, recaptchaLoaded } = useReCaptcha();
+// Get the reCAPTCHA instance. It might be undefined if the plugin isn't ready.
+const recaptchaInstance = useReCaptcha();
 
-// Initialize reCAPTCHA on load if the key is present
-recaptchaLoaded().then(() => {
-  if (!RECAPTCHA_SITE_KEY) {
-    console.error('reCAPTCHA Site Key is not defined. Make sure it\'s set in your .env file.');
-    // You might want to disable the form or show a warning if reCAPTCHA isn't configured
-    feedbackMessage.value = 'reCAPTCHA not configured. Form might not work correctly.';
-  }
-});
+// Safely destructure executeRecaptcha and recaptchaLoaded
+const executeRecaptcha = recaptchaInstance?.executeRecaptcha;
+const recaptchaLoaded = recaptchaInstance?.recaptchaLoaded;
+
+// Initialize reCAPTCHA on load if the key is present and recaptchaLoaded is available
+if (recaptchaLoaded) {
+  recaptchaLoaded().then(() => {
+    if (!RECAPTCHA_SITE_KEY) {
+      console.error('reCAPTCHA Site Key is not defined. Make sure it\'s set in your .env file.');
+      feedbackMessage.value = 'reCAPTCHA not configured. Form might not work correctly.';
+    }
+  });
+} else {
+  console.error('useReCaptcha() did not return expected functions. Is the plugin correctly installed and registered in main.ts?');
+  feedbackMessage.value = 'reCAPTCHA setup issue. Form might not work correctly.';
+}
 
 
 /**
@@ -54,6 +62,13 @@ const submitForm = async () => {
   // Do not proceed if keys are missing or already sending
   if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY || !RECAPTCHA_SITE_KEY || isLoading.value) {
     feedbackMessage.value = 'Form is not ready. Please check configuration.';
+    return;
+  }
+
+  // Ensure executeRecaptcha is available before proceeding
+  if (!executeRecaptcha) {
+    feedbackMessage.value = 'reCAPTCHA is not fully initialized. Please try again or check console.';
+    console.error('executeRecaptcha is undefined. reCAPTCHA plugin might not be ready.');
     return;
   }
 
