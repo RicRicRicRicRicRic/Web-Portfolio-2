@@ -3,7 +3,17 @@ import { ref } from 'vue';
 import emailjs from '@emailjs/browser';
 import { useReCaptcha } from 'vue-recaptcha-v3'; 
 
-// State to hold form data
+
+const locationIcon = "https://api.iconify.design/mdi:location.svg";
+const phoneIcon = "https://api.iconify.design/ic:round-phone.svg";
+const emailIcon = "https://api.iconify.design/ic:baseline-email.svg";
+const messengerIcon = "https://api.iconify.design/bi:messenger.svg";
+
+const phoneNumber = ref('+09152588723'); 
+const contactEmail = ref('ricmichaele@gmail.com'); 
+const locationAddress = ref('Las Piñas, Metro Manila, Philippines'); 
+const messengerName = ref('Ric Michael Estremadura ');
+
 const form = ref({
   name: '',
   email: '',
@@ -11,18 +21,16 @@ const form = ref({
   message: ''
 });
 
-// State for loading and success/error messages
 const isLoading = ref(false);
-const messageSent = ref<boolean | null>(null); // null: initial, true: success, false: error
+const messageSent = ref<boolean | null>(null);
 const feedbackMessage = ref<string>('');
+const showModal = ref(false);
 
-// Accessing EmailJS credentials from environment variables
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
-const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string; // Get reCAPTCHA Site Key
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
 
-// Initialize EmailJS when the component is loaded.
 if (PUBLIC_KEY) {
   emailjs.init({
     publicKey: PUBLIC_KEY,
@@ -30,74 +38,65 @@ if (PUBLIC_KEY) {
 } else {
   console.error('EmailJS Public Key is not defined. Make sure it\'s set in your .env file.');
   feedbackMessage.value = 'Contact form not configured. Please check console for details.';
+  showModal.value = true;
 }
 
-// Initialize useReCaptcha
-// Get the reCAPTCHA instance. It might be undefined if the plugin isn't ready.
 const recaptchaInstance = useReCaptcha();
-
-// Safely destructure executeRecaptcha and recaptchaLoaded
 const executeRecaptcha = recaptchaInstance?.executeRecaptcha;
 const recaptchaLoaded = recaptchaInstance?.recaptchaLoaded;
 
-// Initialize reCAPTCHA on load if the key is present and recaptchaLoaded is available
 if (recaptchaLoaded) {
   recaptchaLoaded().then(() => {
     if (!RECAPTCHA_SITE_KEY) {
       console.error('reCAPTCHA Site Key is not defined. Make sure it\'s set in your .env file.');
       feedbackMessage.value = 'reCAPTCHA not configured. Form might not work correctly.';
+      showModal.value = true;
     }
   });
 } else {
   console.error('useReCaptcha() did not return expected functions. Is the plugin correctly installed and registered in main.ts?');
   feedbackMessage.value = 'reCAPTCHA setup issue. Form might not work correctly.';
+  showModal.value = true;
 }
 
-
-/**
- * Handles the form submission event.
- * Prevents default form submission, executes reCAPTCHA, and sends email using EmailJS.
- */
 const submitForm = async () => {
-  // Do not proceed if keys are missing or already sending
   if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY || !RECAPTCHA_SITE_KEY || isLoading.value) {
     feedbackMessage.value = 'Form is not ready. Please check configuration.';
+    showModal.value = true;
     return;
   }
 
-  // Ensure executeRecaptcha is available before proceeding
   if (!executeRecaptcha) {
     feedbackMessage.value = 'reCAPTCHA is not fully initialized. Please try again or check console.';
     console.error('executeRecaptcha is undefined. reCAPTCHA plugin might not be ready.');
+    showModal.value = true;
     return;
   }
 
   isLoading.value = true;
-  messageSent.value = null; // Reset status
-  feedbackMessage.value = ''; // Clear previous message
+  messageSent.value = null;
+  feedbackMessage.value = '';
 
   try {
-    // 1. Execute reCAPTCHA to get a token
-    const token = await executeRecaptcha('contact_form'); // 'contact_form' is an action name, define relevant for your context
+    const token = await executeRecaptcha('contact_form');
 
     if (!token) {
       feedbackMessage.value = 'reCAPTCHA verification failed. Please try again.';
       isLoading.value = false;
+      showModal.value = true;
       return;
     }
 
-    // 2. Send the form data including the reCAPTCHA token
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
       name: form.value.name,
       email: form.value.email,
       subject: form.value.subject,
       message: form.value.message,
-      'g-recaptcha-response': token // Pass the reCAPTCHA token
+      'g-recaptcha-response': token
     });
 
     messageSent.value = true;
     feedbackMessage.value = 'Your message has been sent successfully!';
-    // Clear the form after successful submission
     form.value.name = '';
     form.value.email = '';
     form.value.subject = '';
@@ -109,7 +108,14 @@ const submitForm = async () => {
     console.error('EmailJS or reCAPTCHA failed:', error);
   } finally {
     isLoading.value = false;
+    showModal.value = true;
   }
+};
+
+const closeModal = () => {
+  showModal.value = false;
+  feedbackMessage.value = '';
+  messageSent.value = null;
 };
 </script>
 
@@ -144,15 +150,42 @@ const submitForm = async () => {
               {{ isLoading ? 'Sending...' : 'Send Message' }}
             </button>
           </div>
-
-          <!-- Feedback message display -->
-          <div v-if="feedbackMessage" :class="{ 'text-green-500': messageSent, 'text-red-500': messageSent === false }" class="mt-4 text-center">
-            {{ feedbackMessage }}
-          </div>
         </form>
       </div>
       <div class="contact-info-column">
-        <!-- You can add contact information like address, phone, social media links here -->
+        <div class="contact-info-container">
+          <div class="contact-detail">
+            <div class="img-container">
+              <img :src="locationIcon" alt="Location Icon"/>
+            </div>
+            <span>{{ locationAddress }}</span>
+          </div>
+          <div class="contact-detail">
+            <div class="img-container">
+              <img :src="phoneIcon" alt="Phone Icon"/>
+            </div>
+            <span>{{ phoneNumber }}</span>
+          </div>
+          <div class="contact-detail">
+            <div class="img-container">
+              <img :src="messengerIcon" alt="Email Icon"/>
+            </div>
+            <span>{{ messengerName }}</span>
+          </div>
+          <div class="contact-detail">
+            <div class="img-container">
+              <img :src="emailIcon" alt="Email Icon"/>
+            </div>
+            <a :href="'mailto:' + contactEmail">{{ contactEmail }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content" :class="{ 'modal-success': messageSent, 'modal-error': messageSent === false }">
+        <button class="modal-close-button" @click="closeModal">&times;</button>
+        <p class="modal-message">{{ feedbackMessage }}</p>
       </div>
     </div>
   </div>
@@ -183,7 +216,7 @@ const submitForm = async () => {
 .contact-layout {
   display: flex;
   width: 100%;
-  height: calc(100% - 80px); 
+  height: calc(100% - 80px);
   box-sizing: border-box;
   align-items: stretch;
   padding: 0 10px;
@@ -195,27 +228,73 @@ const submitForm = async () => {
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .contact-form-column {
   background-color: var(--drak-light-background);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 50%; 
+  width: 50%;
   flex-shrink: 0;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .contact-info-column {
-  width: 50%; 
+  width: 50%;
   flex-shrink: 0;
+  justify-content: center;
+  gap: 20px;
+  .contact-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      width: 65%;
+      gap: 15px;
+      padding: 15px;
+      font-size: 1.1em;
+      color: var(--light-text);
+      
+      .img-container {
+        width: 3rem; 
+        height: 3rem;
+        background-color: var(--drak-light-background);
+        border-radius: 8px; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        flex-shrink: 0; 
+      }
+
+      a {
+        color: var(--accent-teal);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      img {
+        // Set explicit size for the image
+        width: 28px; 
+        height: 28px;
+        // Ensure the image fits within its container without distortion
+        object-fit: contain; 
+        // Apply the color filter
+        filter: var(--img--accent-teal);
+      }
+    }
+  }
 }
+
 
 .contact-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  height: 100%; 
+  height: 100%;
 }
 
 .form-group {
@@ -257,8 +336,8 @@ const submitForm = async () => {
 
   textarea {
     font-size: 16px;
-    resize: vertical; 
-    min-height: 135px; 
+    resize: vertical;
+    min-height: 135px;
   }
 }
 
@@ -278,8 +357,8 @@ const submitForm = async () => {
     font-weight: bold;
     font-size: 1.1em;
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    align-self: flex-start; 
-    margin-top: auto; 
+    align-self: flex-start;
+    margin-top: auto;
 
     &:hover {
       background-color: var(--accent-teal-hover);
@@ -289,4 +368,59 @@ const submitForm = async () => {
   }
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--drak-light-background);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  color: var(--light-text);
+  font-size: 1.1em;
+  border: 2px solid;
+}
+
+.modal-success {
+  border-color: var(--accent-teal);
+}
+
+.modal-error {
+  border-color: #ef4444; 
+}
+
+.modal-message {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: var(--light-text);
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--accent-teal);
+  }
+}
 </style>
