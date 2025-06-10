@@ -160,13 +160,13 @@ onUnmounted(() => {
 .dot {
   width: 12px;
   height: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--drak-light-background); 
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .dot.active {
-  background-color: white;
+  background-color: lightgray;
 }
 </style>

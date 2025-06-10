@@ -1,7 +1,7 @@
-//Home.vue
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'; 
 import profileImage from '@/assets/Profile.png';
+import resume from '@/assets/Estremadura_CV_2.pdf'
 
 const githubIcon = "https://simpleicons.org/icons/github.svg";
 const instagramIcon = "https://simpleicons.org/icons/instagram.svg";
@@ -9,7 +9,6 @@ const youtubeIcon = "https://simpleicons.org/icons/youtube.svg";
 const facebookIcon = "https://simpleicons.org/icons/facebook.svg";
 const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg";
 const menuIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/menu.svg";
-
 
 const githubLink = "https://github.com/RicRicRicRicRicRic"; 
 const instagramLink = "https://www.instagram.com/ricmichaelestremadura/"; 
@@ -73,10 +72,10 @@ onMounted(() => {
           excels at crafting elegant digital experiences and proficient
           in various programming languages and technologies.</p>
       <div class="action-buttons">
-        <button class="download-cv">
+        <a :href="resume" download="Ric_Michael_Estremadura_CV.pdf" class="download-cv">
             Download CV
-          <img :src="downloadIcon" alt="More">
-        </button>
+          <img :src="downloadIcon" alt="Download Icon">
+        </a>
           <div class="social-links">
             <a :href="githubLink" target="_blank" rel="noopener noreferrer">
               <img :src="githubIcon" alt="GitHub">
@@ -89,8 +88,8 @@ onMounted(() => {
             <a :href="facebookLink" target="_blank" rel="noopener noreferrer">
               <img :src="facebookIcon" alt="Facebook"> </a>
           </div>
-        </div>
       </div>
+    </div>
       <div class="profile-section">
         <img :src="profileImage" alt="Profile Picture" class="pfp-pic">
       </div>
@@ -200,7 +199,7 @@ h1 br {
   font-size: 1em;
   line-height: 1.6;
   margin-bottom: 30px;
-  color: var(--nav-link-default);
+  color: var(--font-color-default);
 }
 
 .action-buttons {
@@ -210,6 +209,7 @@ h1 br {
   margin-bottom: 40px;
   flex-wrap: wrap;
 }
+
 
 .download-cv {
   background-color: var(--dark-background);
@@ -225,6 +225,7 @@ h1 br {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
   font-size: 0.95em;
   box-shadow: 0 0 0 transparent; 
+  text-decoration: none;
 
   img {
     width: 25px;
@@ -253,7 +254,7 @@ h1 br {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 1px solid var(--nav-link-default);
+  border: 1px solid var(--font-color-default);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -307,7 +308,7 @@ h1 br {
 
 .stats-grid > div > span:last-child {
   font-size: 0.9em;
-  color: var(--nav-link-default);
+  color: var(--font-color-default);
 }
 
 @media (max-width: 768px) {

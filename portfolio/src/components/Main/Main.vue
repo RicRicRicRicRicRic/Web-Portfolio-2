@@ -63,15 +63,20 @@ const setActiveComponent = (componentName: string) => {
 </template>
 
 <style lang="scss">
-/* Global styles for scrollbars */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+}
+
 :root {
-  --dark-background: #1e1e1e;
-  --drak-light-background: #2e2e2e; 
+  --dark-background: #191919;
+  --drak-light-background: #292929; 
   --light-text: #f0f0f0;
   --logo-text: #e0e0e0;
   --accent-teal: #20c997;
   --accent-teal-hover: #00FF99;
-  --nav-link-default: #a0a0a0;
+  --font-color-default: #a0a0a0;
   --nav-link-hover: #c0c0c0;
   --shadow: rgba(0, 0, 0, 0.1);
   --img--accent-teal: invert(59%) sepia(35%) saturate(1000%) hue-rotate(120deg) brightness(95%) contrast(90%);
@@ -153,7 +158,8 @@ const setActiveComponent = (componentName: string) => {
 
   .nav-link {
     text-decoration: none;
-    color: var(--nav-link-default);
+    font-size: 13px;
+    color: var(--font-color-default);
     margin-left: 20px;
     padding: 5px 10px;
     transition: color 0.3s ease;
