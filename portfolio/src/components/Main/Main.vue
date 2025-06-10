@@ -8,6 +8,7 @@ import Projects from '../Child/Projects.vue'
 import Aspirations from '../Child/Aspirations.vue'
 import Insights from '../Child/Insights.vue'
 import Resume from '../Child/Resume.vue'
+import Contact from '../Child/Contact.vue' 
 
 const activeComponent = ref<string>('Home')
 
@@ -29,6 +30,7 @@ const componentsMap: Record<string, any> = {
   Aspirations,
   Insights,
   Resume,
+  Contact, 
 }
 
 const setActiveComponent = (componentName: string) => {
@@ -50,7 +52,7 @@ const setActiveComponent = (componentName: string) => {
           >
             {{ link.text }}
           </div>
-          <button class="Contact-button"><span>Contact Me</span></button>
+          <button class="Contact-button" @click="setActiveComponent('Contact')">Contact Me</button>
         </nav>
       </div>
     </header>
@@ -72,7 +74,7 @@ body {
 :root {
   --dark-background: #191919;
   --drak-light-background: #292929; 
-  --light-text: #f0f0f0;
+  --light-text: #ffffff;
   --logo-text: #e0e0e0;
   --accent-teal: #20c997;
   --accent-teal-hover: #00FF99;
@@ -189,9 +191,9 @@ body {
 
     &:hover {
       background-color: var(--accent-teal-hover);
-      span{
-        color: var(--dark-background)
-      }
+      color: var(--dark-background);
+      border-color: var(--accent-teal-hover); 
+      box-shadow: 0 0 10px var(--accent-teal); 
     }
   }
 }

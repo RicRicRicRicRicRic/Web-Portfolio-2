@@ -2,17 +2,24 @@
 import { ref } from 'vue';
 import resume from '@/assets/Estremadura_CV_2.pdf'
 const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg";
-const activeTab = ref(3);
+const activeTab = ref(3); 
+const shouldAnimateSkills = ref(false); 
 
 const setActiveTab = (index: number) => {
   activeTab.value = index;
+  if (index === 2) { 
+    setTimeout(() => {
+      shouldAnimateSkills.value = true;
+    }, 50); 
+  } else {
+    shouldAnimateSkills.value = false; 
+  }
 };
 
 const calendarIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/calendar.svg";
-
 const godotIcon = "https://simpleicons.org/icons/godotengine.svg";
 const vueIcon = "https://simpleicons.org/icons/vuedotjs.svg";
-const jsIcon = "https://simpleicons.org/icons/javascript.svg";
+const jsIcon = "https://simpleicons.org/icons/nodedotjs.svg";
 const fastapiIcon = "https://simpleicons.org/icons/fastapi.svg";
 const dotnetiIcon = "https://simpleicons.org/icons/dotnet.svg";
 
@@ -40,7 +47,7 @@ const skillsData = ref([
     name: '.NET Framework (C#)',
     icon: dotnetiIcon,
     description: 'Solid experience in developing desktop and web applications using C# and the .NET framework, including WinForms, WPF, and ASP.NET Core.',
-    percentage: 55,
+    percentage: 65,
   },
   {
     name: 'Vue Framework',
@@ -161,7 +168,7 @@ const skillsData = ref([
             </div>
             <p>{{ skill.description }}</p>
             <div class="progress-bar-container">
-              <div class="progress-bar-fill" :style="{ width: skill.percentage + '%' }"></div>
+              <div class="progress-bar-fill" :style="{ width: shouldAnimateSkills ? skill.percentage + '%' : '0%' }"></div>
             </div>
           </div>
         </div>
@@ -204,7 +211,7 @@ const skillsData = ref([
 <style scoped lang="scss">
 .container {
   height: 100%;
-  width: 925px;
+  width: var(--align--wdith);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -227,7 +234,7 @@ const skillsData = ref([
     color: #e0e0e0;
     text-align: left;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   .nav-description {
     font-size: 1rem;
