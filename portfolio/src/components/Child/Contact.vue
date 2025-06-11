@@ -195,9 +195,6 @@ const closeModal = () => {
 </template>
 
 <style scoped lang="scss">
-// Re-defining root variables for direct access within this component's scope (or ensure they are globally available)
-// It's generally better to rely on global root variables for consistency or pass them via props/context.
-// For demonstration, these are kept to show local control, but consider global var strategy.
 :root {
   --dark-background: #1a1a1a;
   --drak-light-background: #2a2a2a;
@@ -206,9 +203,8 @@ const closeModal = () => {
   --font-color-default: #e0e0e0;
   --light-text: #ccc;
   --shadow-teal: 0 0 15px rgba(0, 255, 153, 0.5);
-  --align--wdith: 800px; /* Adjusted max width for contact form */
+  --align--wdith: 800px; 
 
-  // Fluid font sizes using clamp() for better responsiveness
   --font-size-base: clamp(14px, 1.5vw, 16px);
   --font-size-small: clamp(12px, 1.2vw, 14px);
   --font-size-medium: clamp(16px, 1.8vw, 18px);
@@ -218,8 +214,8 @@ const closeModal = () => {
 }
 
 .contact-page-container {
-  height: 95%; /* Relative height for flexibility */
-  width: var(--align--wdith); /* Uses global align width variable */
+  height: 95%; 
+  width: var(--align--wdith); 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -227,13 +223,13 @@ const closeModal = () => {
   justify-content: center;
   background-color: var(--dark-background);
   color: var(--light-text);
-  padding: clamp(10px, 2vw, 20px); /* Fluid padding */
+  padding: clamp(10px, 2vw, 20px); 
 
   h1 {
-    font-size: var(--font-size-xxl); /* Fluid font size from root variables */
+    font-size: var(--font-size-xxl); 
     font-weight: bold;
     color: var(--accent-teal);
-    margin-bottom: clamp(15px, 3vw, 20px); /* Fluid margin */
+    margin-bottom: clamp(15px, 3vw, 20px); 
     text-align: center;
     width: 100%;
   }
@@ -242,16 +238,16 @@ const closeModal = () => {
 .contact-layout {
   display: flex;
   width: 100%;
-  height: calc(100% - clamp(60px, 10vh, 80px)); /* Adjusted height to account for h1 and its margin */
+  height: calc(100% - clamp(60px, 10vh, 80px)); 
   box-sizing: border-box;
-  align-items: stretch; /* Ensures columns stretch to fill available height */
-  gap: clamp(15px, 3vw, 20px); /* Fluid gap between columns */
-  padding: 0 clamp(5px, 1vw, 10px); /* Fluid horizontal padding */
+  align-items: stretch; 
+  gap: clamp(15px, 3vw, 20px); 
+  padding: 0 clamp(5px, 1vw, 10px); 
 }
 
 .contact-form-column,
 .contact-info-column {
-  padding: clamp(15px, 3vw, 20px); /* Fluid padding */
+  padding: clamp(15px, 3vw, 20px); 
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -261,38 +257,38 @@ const closeModal = () => {
 .contact-form-column {
   background-color: var(--drak-light-background);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 50%; /* Fixed width for desktop */
+  width: 50%; 
   flex-shrink: 0;
-  overflow-y: auto; /* Allow form content to scroll */
+  overflow-y: auto; 
 }
 
 .contact-info-column {
-  width: 50%; /* Fixed width for desktop */
+  width: 50%; 
   flex-shrink: 0;
   justify-content: center;
-  gap: clamp(10px, 2vw, 20px); /* Fluid gap */
+  gap: clamp(10px, 2vw, 20px); 
   .contact-info-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: clamp(10px, 2vw, 15px); /* Fluid padding */
+    padding: clamp(10px, 2vw, 15px); 
     border-radius: 12px;
-    background-color: var(--drak-light-background); /* Added background for consistency */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Added shadow for consistency */
+    background-color: var(--drak-light-background); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 
     .contact-detail {
       display: flex;
       align-items: center;
-      width: 90%; /* Adjust width of detail items */
-      gap: clamp(10px, 2vw, 15px); /* Fluid gap */
-      padding: clamp(10px, 2vw, 15px); /* Fluid padding */
-      font-size: var(--font-size-base); /* Fluid font size */
+      width: 90%; 
+      gap: clamp(10px, 2vw, 15px); 
+      padding: clamp(10px, 2vw, 15px); 
+      font-size: var(--font-size-base); 
       color: var(--light-text);
       
       .img-container {
-        width: clamp(2.5rem, 5vw, 3rem); /* Fluid width for icon container */
-        height: clamp(2.5rem, 5vw, 3rem); /* Fluid height for icon container */
+        width: clamp(2.5rem, 5vw, 3rem); 
+        height: clamp(2.5rem, 5vw, 3rem); 
         background-color: var(--dark-background);
         border-radius: 8px; 
         display: flex; 
@@ -304,14 +300,14 @@ const closeModal = () => {
       a {
         color: var(--accent-teal);
         text-decoration: none;
-        word-break: break-word; /* Allow long emails to wrap */
+        word-break: break-word; 
         &:hover {
           text-decoration: underline;
         }
       }
       img {
-        width: clamp(24px, 4.5vw, 28px); /* Fluid icon size */
-        height: clamp(24px, 4.5vw, 28px); /* Fluid icon size */
+        width: clamp(24px, 4.5vw, 28px); 
+        height: clamp(24px, 4.5vw, 28px); 
         object-fit: contain; 
         filter: var(--img--accent-teal);
       }
@@ -322,7 +318,7 @@ const closeModal = () => {
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 2vw, 15px); /* Fluid gap */
+  gap: clamp(10px, 2vw, 15px); 
   height: 100%;
 }
 
@@ -331,9 +327,9 @@ const closeModal = () => {
   flex-direction: column;
 
   label {
-    font-size: var(--font-size-small); /* Fluid font size */
+    font-size: var(--font-size-small); 
     color: var(--accent-teal);
-    margin-bottom: clamp(3px, 0.8vw, 5px); /* Fluid margin */
+    margin-bottom: clamp(3px, 0.8vw, 5px); 
     font-weight: bold;
   }
 
@@ -342,12 +338,12 @@ const closeModal = () => {
   input[type="subject"],
   textarea {
     width: 100%;
-    padding: clamp(8px, 1.8vw, 10px); /* Fluid padding */
+    padding: clamp(8px, 1.8vw, 10px); 
     background-color: var(--dark-background);
     border: 1px solid var(--drak-light-background);
     border-radius: 8px;
     color: var(--light-text);
-    font-size: var(--font-size-base); /* Fluid font size */
+    font-size: var(--font-size-base); 
     box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -364,9 +360,9 @@ const closeModal = () => {
   }
 
   textarea {
-    font-size: var(--font-size-base); /* Fluid font size */
-    resize: vertical; /* Allow vertical resizing */
-    min-height: clamp(100px, 15vh, 135px); /* Fluid min-height for textarea */
+    font-size: var(--font-size-base); 
+    resize: vertical; 
+    min-height: clamp(100px, 15vh, 135px); 
   }
 }
 
@@ -375,19 +371,19 @@ const closeModal = () => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: clamp(15px, 3vw, 20px); /* Fluid top margin */
+  margin-top: clamp(15px, 3vw, 20px); 
 
   .submit-button {
     background-color: var(--accent-teal);
     color: var(--dark-background);
     border: none;
-    padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 25px); /* Fluid padding */
+    padding: clamp(10px, 2.5vw, 12px) clamp(20px, 5vw, 25px); 
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    font-size: var(--font-size-base); /* Fluid font size */
+    font-size: var(--font-size-base); 
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    align-self: center; /* Center the button */
+    align-self: center; 
     
     &:hover {
       background-color: var(--accent-teal-hover);
@@ -416,15 +412,15 @@ const closeModal = () => {
 
 .modal-content {
   background-color: var(--drak-light-background);
-  padding: clamp(20px, 4vw, 30px); /* Fluid padding */
+  padding: clamp(20px, 4vw, 30px); 
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
-  max-width: clamp(300px, 70vw, 400px); /* Fluid max-width */
+  max-width: clamp(300px, 70vw, 400px); 
   width: 90%;
   position: relative;
   color: var(--light-text);
-  font-size: var(--font-size-base); /* Fluid font size */
+  font-size: var(--font-size-base); 
   border: 2px solid;
 }
 
@@ -437,18 +433,18 @@ const closeModal = () => {
 }
 
 .modal-message {
-  margin-bottom: clamp(10px, 2vw, 20px); /* Fluid margin */
+  margin-bottom: clamp(10px, 2vw, 20px); 
   font-weight: bold;
   line-height: 1.5;
 }
 
 .modal-close-button {
   position: absolute;
-  top: clamp(8px, 2vw, 10px); /* Fluid position */
-  right: clamp(10px, 2vw, 15px); /* Fluid position */
+  top: clamp(8px, 2vw, 10px); 
+  right: clamp(10px, 2vw, 15px); 
   background: none;
   border: none;
-  font-size: var(--font-size-xl); /* Fluid font size */
+  font-size: var(--font-size-xl); 
   color: var(--light-text);
   cursor: pointer;
   transition: color 0.2s ease;
@@ -458,86 +454,85 @@ const closeModal = () => {
   }
 }
 
-// Media query for mobile responsiveness (max-width 768px)
 @media (max-width: 768px) {
   .contact-page-container {
     width: 100%;
-    padding: clamp(10px, 3vw, 15px) clamp(5px, 1.5vw, 10px); /* Adjusted fluid padding */
-    height: auto; /* Height determined by content */
-    overflow-y: auto; /* Allow container to scroll */
-    justify-content: flex-start; /* Align content to the top */
+    padding: clamp(10px, 3vw, 15px) clamp(5px, 1.5vw, 10px); 
+    height: auto; 
+    overflow-y: auto; 
+    justify-content: flex-start; 
   }
 
   .contact-layout {
-    flex-direction: column; /* Stack columns vertically */
-    height: auto; /* Height determined by content */
-    padding: 0; /* Remove horizontal padding from layout */
-    gap: clamp(15px, 4vw, 20px); /* Fluid gap between stacked columns */
+    flex-direction: column; 
+    height: auto; 
+    padding: 0; 
+    gap: clamp(15px, 4vw, 20px); 
   }
 
   .contact-form-column {
-    width: 100%; /* Take full width on mobile */
-    margin-bottom: 0; /* Remove bottom margin as gap handles spacing */
-    overflow-y: visible; /* Allow content to push height */
+    width: 100%; 
+    margin-bottom: 0; 
+    overflow-y: visible; 
   }
 
   .contact-info-column {
-    width: 100%; /* Take full width on mobile */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Keep shadow for visual separation */
-    padding: clamp(10px, 3vw, 15px); /* Smaller fluid padding */
-    margin-top: 0; /* Remove top margin */
+    width: 100%; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    padding: clamp(10px, 3vw, 15px); 
+    margin-top: 0; 
     .contact-info-container {
-      flex-direction: column; /* Stack contact details vertically */
+      flex-direction: column; 
       width: 100%;
-      padding: clamp(8px, 2vw, 10px); /* Adjusted fluid padding */
+      padding: clamp(8px, 2vw, 10px); 
       .contact-detail {
         width: 100%;
-        justify-content: flex-start; /* Align details to the left */
-        padding: clamp(5px, 1.5vw, 10px) 0; /* Fluid padding for details */
-        font-size: var(--font-size-small); /* Smaller fluid font size */
+        justify-content: flex-start; 
+        padding: clamp(5px, 1.5vw, 10px) 0; 
+        font-size: var(--font-size-small); 
         .img-container {
-          width: clamp(2rem, 4vw, 2.5rem); /* Smaller fluid width for icon container */
-          height: clamp(2rem, 4vw, 2.5rem); /* Smaller fluid height for icon container */
+          width: clamp(2rem, 4vw, 2.5rem); 
+          height: clamp(2rem, 4vw, 2.5rem); 
         }
         img {
-          width: clamp(20px, 4vw, 24px); /* Smaller fluid icon size */
-          height: clamp(20px, 4vw, 24px); /* Smaller fluid icon size */
+          width: clamp(20px, 4vw, 24px); 
+          height: clamp(20px, 4vw, 24px); 
         }
       }
     }
   }
 
   h1 {
-    font-size: var(--font-size-xl); /* Adjusted fluid font size for mobile */
-    margin-bottom: clamp(10px, 3vw, 15px); /* Adjusted fluid margin */
+    font-size: var(--font-size-xl); 
+    margin-bottom: clamp(10px, 3vw, 15px); 
   }
 
   .form-group {
     label {
-      font-size: var(--font-size-small); /* Smaller fluid font size for labels */
+      font-size: var(--font-size-small); 
     }
     input[type="text"],
     input[type="email"],
     input[type="subject"],
     textarea {
-      font-size: var(--font-size-small); /* Smaller fluid font size for inputs/textarea */
-      padding: clamp(6px, 1.5vw, 8px); /* Smaller fluid padding */
+      font-size: var(--font-size-small); 
+      padding: clamp(6px, 1.5vw, 8px); 
     }
     textarea {
-      min-height: clamp(80px, 12vh, 100px); /* Smaller fluid min-height for textarea */
+      min-height: clamp(80px, 12vh, 100px); 
     }
   }
 
   .submit-button {
-    width: 100%; /* Take full width */
-    padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px); /* Smaller fluid padding */
-    font-size: var(--font-size-small); /* Smaller fluid font size */
+    width: 100%; 
+    padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px); 
+    font-size: var(--font-size-small); 
   }
 
   .modal-content {
-    max-width: 95%; /* Wider max-width for modal on mobile */
-    padding: clamp(15px, 4vw, 20px); /* Smaller fluid padding */
-    font-size: var(--font-size-small); /* Smaller fluid font size */
+    max-width: 95%; 
+    padding: clamp(15px, 4vw, 20px); 
+    font-size: var(--font-size-small); 
   }
 }
 
