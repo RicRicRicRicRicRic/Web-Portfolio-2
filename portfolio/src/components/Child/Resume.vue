@@ -121,10 +121,10 @@ const skillsData = ref([
               <h2>High School (2016 - 2020)</h2>
             </div>
             <p>My high school years ignited my passion for web development. I gained foundational skills in HTML and CSS,
-               which I applied to create a simple website project. To further my learning, I took a multi-month course at
-                Adamson University. This program expanded my technical horizons, introducing me to more advanced HTML/CSS
-                 techniques, web animation principles, and even a glimpse into architectural design software. 
-                 These early experiences solidified my interest in building and designing for the web.</p> 
+              which I applied to create a simple website project. To further my learning, I took a multi-month course at
+              Adamson University. This program expanded my technical horizons, introducing me to more advanced HTML/CSS
+              techniques, web animation principles, and even a glimpse into architectural design software. 
+              These early experiences solidified my interest in building and designing for the web.</p> 
           </div>
           <div class="academic-section">
             <div class="acad-title">
@@ -133,11 +133,11 @@ const skillsData = ref([
             </div>
             <p>During senior high, I transitioned into more structured programming concepts, 
               primarily focusing on Java. I gained a solid understanding of fundamental programming constructs like classes,
-               loops, and conditionals, and actively participated in projects that reinforced these learnings. 
-               My curriculum also included an exploration of various number systems binary, octal, and hexadecimal 
-               and their conversions, which provided a deeper appreciation for how computers process data. 
-               These experiences laid a strong groundwork for tackling more complex coding challenges in my 
-               collegiate studies.</p>
+              loops, and conditionals, and actively participated in projects that reinforced these learnings. 
+              My curriculum also included an exploration of various number systems binary, octal, and hexadecimal 
+              and their conversions, which provided a deeper appreciation for how computers process data. 
+              These experiences laid a strong groundwork for tackling more complex coding challenges in my 
+              collegiate studies.</p>
           </div>
           <div class="academic-section">
             <div class="acad-title">
@@ -179,7 +179,7 @@ const skillsData = ref([
           <div class="about-desc">
             <p>
               I'm <strong>Ric Michael Estremadura</strong>, currently a Computer Science Student.
-              Passionate and driven third-year Computer Science student with hands-on experience in building and designing 
+              Patriotism and driven third-year Computer Science student with hands-on experience in building and designing 
               websites, creating and developing 2d games with godot engine, as well as creating robust applications using C# 
               and .NET frameworks. Eager to leverage technical expertise, innovative thinking, and collaborative spirit to 
               contribute to a dynamic development team and drive innovative solutions in the tech industry.
@@ -451,5 +451,59 @@ const skillsData = ref([
       }
     }
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; 
+    height: 100%; 
+    width: 100%;
+    padding: 0; 
+    box-sizing: border-box; 
+    overflow-y: auto;
+    align-items: center; 
+    justify-content: flex-start; 
+  }
+
+  .navigation-container {
+    width: 100%; 
+    height: auto; 
+    button {
+      width: 90%;
+      max-width: 90%;
+      padding: 10px 15px;
+      margin-bottom: 5px;
+    }
+    .nav-title {
+      margin-top: 30px;
+      font-size: 1.5em;
+      width: 90%;
+      margin-bottom: 5px;
+    }
+      .nav-description {
+      font-size: 0.9rem;
+      width: 90%;
+      margin-bottom: 10px;
+    }
+  }
+  .display-container {
+    width: 100%; 
+    height: auto; 
+    h1{
+      font-size: 1.5em;
+    }
+  }
+  .about-content,
+  .skills-content,
+  .experience-content,
+  .academic-content{
+
+
+    h2,
+    h3{
+      font-size: 1em;
+    }
+  }
+
 }
 </style>

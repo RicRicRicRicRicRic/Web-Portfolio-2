@@ -39,7 +39,7 @@ const aspirations = [
 
 <style scoped lang="scss">
 .aspirations-page-container {
-  height: 95%;
+  height: 95%; 
   width: var(--align--wdith);
   box-sizing: border-box;
   display: flex;
@@ -49,7 +49,7 @@ const aspirations = [
   background-color: var(--dark-background);
   color: var(--light-text);
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: auto; 
 
   h1 {
     font-size: 2.5em;
@@ -123,31 +123,45 @@ const aspirations = [
 }
 
 @media (max-width: 768px) {
-  .aspirations-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .aspiration-card {
-    width: 90%;
-    max-width: 400px;
+  .aspirations-page-container {
+    width: 100%;
+    padding: 10px;
+    justify-content: flex-start;
   }
 
   .aspirations-page-container h1 {
-    font-size: 2em;
-    margin-bottom: 30px;
+    font-size: 1.8em;
+    margin-bottom: 20px;
   }
-}
+  .aspirations-grid {
+    flex-direction: column; 
+    align-items: center;
+    gap: 15px;
+    width: 100%; 
+  }
 
-@media (max-width: 480px) {
   .aspiration-card {
-    padding: 20px;
-  }
-  .aspiration-card h2 {
-    font-size: 1.5em;
-  }
-  .aspiration-card p {
-    font-size: 0.9em;
+    width: 85%; 
+    max-width: 400px;
+    min-width: unset;
+    padding: 12px;
+    .icon-container {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+    .aspiration-icon {
+      width: 30px;
+      height: 30px;
+    }
+    h2 {
+      font-size: 1em;
+      margin-bottom: 4px;
+    }
+    p {
+      font-size: 0.8em;
+      line-height: 1;
+    }
   }
 }
 </style>
