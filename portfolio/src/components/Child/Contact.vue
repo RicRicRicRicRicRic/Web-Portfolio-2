@@ -192,6 +192,17 @@ const closeModal = () => {
 </template>
 
 <style scoped lang="scss">
+:root {
+  --dark-background: #1a1a1a;
+  --drak-light-background: #2a2a2a;
+  --accent-teal: #00FF99;
+  --accent-teal-hover: #00e68a;
+  --font-color-default: #e0e0e0;
+  --light-text: #ccc;
+  --shadow-teal: 0 0 15px rgba(0, 255, 153, 0.5);
+  --align--wdith: 800px;
+}
+
 .contact-page-container {
   height: 95%;
   width: var(--align--wdith);
@@ -277,12 +288,9 @@ const closeModal = () => {
         }
       }
       img {
-        // Set explicit size for the image
         width: 28px; 
         height: 28px;
-        // Ensure the image fits within its container without distortion
         object-fit: contain; 
-        // Apply the color filter
         filter: var(--img--accent-teal);
       }
     }
@@ -349,7 +357,7 @@ const closeModal = () => {
   margin-top: 20px;
   .submit-button {
     background-color: var(--accent-teal);
-    color: var(--light-text);
+    color: var(--dark-background);
     border: none;
     padding: 12px 25px;
     border-radius: 8px;
@@ -362,8 +370,12 @@ const closeModal = () => {
 
     &:hover {
       background-color: var(--accent-teal-hover);
-      color: var(--dark-background);
       box-shadow: 0 0 10px var(--accent-teal);
+    }
+    &:disabled {
+      background-color: #555;
+      cursor: not-allowed;
+      opacity: 0.6;
     }
   }
 }
@@ -421,6 +433,86 @@ const closeModal = () => {
 
   &:hover {
     color: var(--accent-teal);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page-container {
+    width: 100%;
+    padding: 15px 10px;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .contact-layout {
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+  }
+
+  .contact-form-column {
+    width: 100%;
+    margin-bottom: 20px;
+    overflow-y: visible;
+  }
+
+  .contact-info-column {
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-top: 0;
+    .contact-info-container {
+      flex-direction: column;
+      width: 100%;
+      .contact-detail {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 10px 0;
+        .img-container {
+          width: 2rem; 
+          height: 2rem;
+        }
+        img {
+          width: 24px; 
+          height: 24px;
+        }
+      }
+
+
+    }
+  }
+
+  .page-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .page-description {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    input[type="text"],
+    input[type="email"],
+    input[type="subject"],
+    textarea {
+      font-size: 0.9em;
+      padding: 8px;
+    }
+    textarea {
+      min-height: 100px;
+    }
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .modal-content {
+    width: 95%;
   }
 }
 </style>
