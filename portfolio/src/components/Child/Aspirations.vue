@@ -7,7 +7,7 @@ const aspirations = [
   {
     icon: graduateIcon,
     title: "Graduate",
-    description: "Successfully complete my Computer Science degree, mastering core concepts in algorithms, data structures, and software engineering principles. Aspiring to graduate with honors and a strong foundation for future career endeavors."
+    description: "Successfully complete my Computer Science degree, mastering core concepts in algorithms, data structures, and software engineering principles. Aspiring to graduate with a strong foundation for future career endeavors."
   },
   {
     icon: programmerIcon,
