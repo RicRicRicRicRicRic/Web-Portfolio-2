@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, defineAsyncComponent } from 'vue'
+import { ref, defineAsyncComponent, watch } from 'vue'
+
+const menuIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/menu.svg";
 
 import Home from '../Child/Home.vue'
 import About from '../Child/About.vue'
@@ -11,6 +13,7 @@ import Resume from '../Child/Resume.vue'
 import Contact from '../Child/Contact.vue' 
 
 const activeComponent = ref<string>('Home')
+const isMobileMenuOpen = ref<boolean>(false)
 
 const navLinks = ref([
   { text: 'Home', component: 'Home' },
@@ -34,8 +37,17 @@ const componentsMap: Record<string, any> = {
 }
 
 const setActiveComponent = (componentName: string) => {
-  activeComponent.value = componentName
+  activeComponent.value = componentName;
+  isMobileMenuOpen.value = false;
 }
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+}
+
+watch(isMobileMenuOpen, (newVal) => {
+  document.body.classList.toggle('no-scroll', newVal);
+});
 </script>
 
 <template>
@@ -54,8 +66,28 @@ const setActiveComponent = (componentName: string) => {
           </div>
           <button class="Contact-button" @click="setActiveComponent('Contact')">Contact Me</button>
         </nav>
+        <button class="menu-toggle-button" @click.stop="toggleMobileMenu">
+          <img :src="menuIcon" alt="Menu Toggle Icon" class="menu-icon-svg" />
+        </button>
       </div>
     </header>
+
+    <Transition name="slide-fade">
+      <div v-if="isMobileMenuOpen" class="mobile-nav-sidebar">
+        <div class="mobile-nav-links">
+          <div
+            v-for="link in navLinks"
+            :key="link.text"
+            :class="['mobile-nav-link', { active: activeComponent === link.component }]"
+            @click="setActiveComponent(link.component)"
+          >
+            {{ link.text }}
+          </div>
+          <button class="mobile-Contact-button" @click="setActiveComponent('Contact')">Contact Me</button>
+        </div>
+      </div>
+    </Transition>
+    
     <div class="content-container">
       <div class="content">
        <component :is="componentsMap[activeComponent]" />
@@ -67,8 +99,18 @@ const setActiveComponent = (componentName: string) => {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 :root {
@@ -113,8 +155,6 @@ body {
   width: 0;
   height: 0;
 }
-
-
 </style>
 
 <style scoped lang="scss">
@@ -123,8 +163,8 @@ body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 .header-bar {
@@ -137,7 +177,7 @@ body {
   height: 70px;
   box-shadow: 0 2px 4px var(--shadow);
   flex-shrink: 0;
-
+  z-index: 10;
 }
 
 .header-content {
@@ -198,11 +238,7 @@ body {
   }
 }
 
-.content {
-  max-width: var(--align--wdith);
-  height: 100%;
-}
-.content-container{
+.content-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,5 +246,74 @@ body {
   box-sizing: border-box;
   background-color: var(--dark-background);
   overflow: hidden;
+}
+
+.content {
+  max-width: var(--align--wdith);
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-toggle-button {
+  display: none !important; 
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    display: none;
+  }
+
+  .menu-toggle-button {
+    display: block !important;
+    background: none; border: none; cursor: pointer; padding: 0; z-index: 1; 
+    .menu-icon-svg {
+      width: 30px; height: 30px;
+      filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    }
+  }
+
+  .header-content { padding: 0 15px; }
+
+  .mobile-nav-sidebar {
+    position: fixed; top: 0; right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: var(--drak-light-background);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4); 
+    z-index: 1001; 
+    display: flex; flex-direction: column; padding: 20px; box-sizing: border-box;
+  }
+
+  .slide-fade-enter-active, .slide-fade-leave-active {
+    transition: transform 0.3s ease-out;
+  }
+  .slide-fade-enter-from, .slide-fade-leave-to {
+    transform: translateX(100%);
+  }
+  .slide-fade-enter-to, .slide-fade-leave-from {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-links { display: flex; flex-direction: column; gap: 15px; }
+
+  .mobile-nav-link {
+    text-decoration: none; font-size: 1.1em; color: var(--font-color-default);
+    padding: 10px 15px; border-radius: 8px; transition: background-color 0.3s ease, color 0.3s ease; cursor: pointer;
+    &:hover { background-color: var(--dark-background); color: var(--nav-link-hover); }
+    &.active { background-color: var(--accent-teal); color: var(--dark-background); font-weight: bold; }
+  }
+
+  .mobile-Contact-button {
+    background-color: var(--accent-teal); color: var(--dark-background);
+    border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer;
+    font-weight: bold; font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px; width: 100%;
+    &:hover {
+      background-color: var(--accent-teal-hover); color: var(--dark-background);
+      box-shadow: 0 0 10px var(--accent-teal);
+    }
+  }
 }
 </style>

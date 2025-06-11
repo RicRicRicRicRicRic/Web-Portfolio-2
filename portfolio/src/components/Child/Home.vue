@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'; 
+import { ref, onMounted } from 'vue';
 import profileImage from '@/assets/Profile.png';
 import resume from '@/assets/Estremadura_CV_2.pdf'
 
@@ -8,12 +8,12 @@ const instagramIcon = "https://simpleicons.org/icons/instagram.svg";
 const youtubeIcon = "https://simpleicons.org/icons/youtube.svg";
 const facebookIcon = "https://simpleicons.org/icons/facebook.svg";
 const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg";
-const menuIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/menu.svg";
 
-const githubLink = "https://github.com/RicRicRicRicRicRic"; 
-const instagramLink = "https://www.instagram.com/ricmichaelestremadura/"; 
+
+const githubLink = "https://github.com/RicRicRicRicRicRic";
+const instagramLink = "https://www.instagram.com/ricmichaelestremadura/";
 const youtubeLink = "https://www.youtube.com/@RICMICHAELESTREMADURA";
-const facebookLink = "https://www.facebook.com/rm.estremadura/"; 
+const facebookLink = "https://www.facebook.com/rm.estremadura/";
 
 const typedSpecialization = ref('');
 const specializations = [
@@ -27,10 +27,10 @@ const specializations = [
 let specializationIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-const typingSpeed = 100; 
+const typingSpeed = 100;
 const deletingSpeed = 50;
-const pauseBeforeDelete = 1500; 
-const pauseBeforeType = 500; 
+const pauseBeforeDelete = 1500;
+const pauseBeforeType = 500;
 
 const typeEffect = () => {
   const currentWord = specializations[specializationIndex];
@@ -40,7 +40,7 @@ const typeEffect = () => {
     if (charIndex === 0) {
       isDeleting = false;
       specializationIndex = (specializationIndex + 1) % specializations.length;
-      setTimeout(typeEffect, pauseBeforeType); 
+      setTimeout(typeEffect, pauseBeforeType);
     } else {
       setTimeout(typeEffect, deletingSpeed);
     }
@@ -67,7 +67,7 @@ onMounted(() => {
   <div class="main-about-section">
     <div class="about-content">
       <p class="specialization">{{ typedSpecialization }}<span class="blinking-cursor">|</span></p>
-        <h1>Hello I'm <br> Ric.</h1>
+        <h1>Hello I'm Ric.</h1>
       <p class="description">3rd year computer science student,
           excels at crafting elegant digital experiences and proficient
           in various programming languages and technologies.</p>
@@ -117,8 +117,9 @@ onMounted(() => {
 
 
 <style lang="scss">
+
+
 .container {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -163,7 +164,7 @@ onMounted(() => {
   font-size: 1.5em;
   color: var(--accent-teal);
   margin-bottom: 0px;
-  min-height: 1.5em; 
+  min-height: 1.5em;
   display: flex;
   align-items: center;
 }
@@ -222,9 +223,9 @@ h1 br {
   display: flex;
   align-items: center;
   gap: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   font-size: 0.95em;
-  box-shadow: 0 0 0 transparent; 
+  box-shadow: 0 0 0 transparent;
   text-decoration: none;
 
   img {
@@ -237,10 +238,10 @@ h1 br {
   &:hover {
     background-color: var(--accent-teal-hover);
     color: var(--dark-background);
-    border-color: var(--accent-teal-hover); 
-    box-shadow: 0 0 10px var(--accent-teal); 
+    border-color: var(--accent-teal-hover);
+    box-shadow: 0 0 10px var(--accent-teal);
     img {
-      filter: var(--inmg--dark-bg); 
+      filter: var(--inmg--dark-bg);
     }
   }
 }
@@ -258,7 +259,7 @@ h1 br {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 0 0 transparent;
 
   &:hover {
@@ -313,14 +314,18 @@ h1 br {
 
 @media (max-width: 768px) {
   .container {
-    padding: 30px;
+    padding: 15px;
+    margin-top: -30px;
     gap: 30px;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   .main-about-section {
     flex-direction: column;
     text-align: center;
-    gap: 30px;
+    gap: 20px;
+    margin-bottom: 0px;
   }
 
   .about-content {
@@ -334,25 +339,39 @@ h1 br {
     height: 250px;
   }
 
+  .specialization {
+    justify-content: center;
+  }
+
   h1 {
-    font-size: 2.5em;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    white-space: nowrap;
   }
 
   h1 br {
-    display: inline;
+    display: none;
   }
 
   .action-buttons {
     justify-content: center;
   }
-
-  .stats-grid > div {
-    align-items: center;
-  }
-
   .stats-grid {
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-items: center;
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+  .stats-grid > div {
+    align-items: center;
+    font-size: 0.5em;
+  }
+  .description {
+    font-size: 0.75em;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: var(--font-color-default);
   }
 }
 </style>
