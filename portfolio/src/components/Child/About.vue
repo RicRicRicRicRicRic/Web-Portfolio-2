@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
-import profileImage from '@/assets/Profile.png'; // Imported profile image
-import familyImage from '@/assets/family_pic.jpg' // Imported family image
+import profileImage from '@/assets/Profile.png';
+import familyImage from '@/assets/family_pic.jpg'
 
 const pageContainer = ref<HTMLElement | null>(null);
 const activeDot = ref(0);
@@ -66,11 +66,11 @@ onUnmounted(() => {
           </div>
           <div class="about-me">
             <h1>About me</h1>
-            <p>I'm Ric Michael Estremadura, currently a Computer Science Student. 
-              Passionate and driven third-year Computer Science student with hands-on experience in building and 
-              designing websites, creating and developing 2d games with godot engine, as well as creating robust 
-              applications using C# and .NET frameworks. Eager to leverage technical expertise, innovative thinking, 
-              and collaborative spirit to contribute to a dynamic development team and drive innovative solutions in 
+            <p>I'm Ric Michael Estremadura, currently a Computer Science Student.
+              Passionate and driven third-year Computer Science student with hands-on experience in building and
+              designing websites, creating and developing 2d games with godot engine, as well as creating robust
+              applications using C# and .NET frameworks. Eager to leverage technical expertise, innovative thinking,
+              and collaborative spirit to contribute to a dynamic development team and drive innovative solutions in
               the tech industry.
             </p>
           </div>
@@ -80,9 +80,9 @@ onUnmounted(() => {
         <div class="scroll-item-content">
           <div class="describe-myslef">
             <h1>Describing myself</h1>
-            <p>While I'm naturally a quiet, introverted, and reserved person, it certainly doesn't stop me from being a 
-              collaborative team player. Outside of coding and building projects, you'll often find me unwinding by 
-              playing video games, reading manga, or watching anime/TV series. To stay active, I enjoy hitting the gym, 
+            <p>While I'm naturally a quiet, introverted, and reserved person, it certainly doesn't stop me from being a
+              collaborative team player. Outside of coding and building projects, you'll often find me unwinding by
+              playing video games, reading manga, or watching anime/TV series. To stay active, I enjoy hitting the gym,
               jump roping, and occasionally doing calisthenics.</p>
           </div>
         </div>
@@ -94,11 +94,11 @@ onUnmounted(() => {
           </div>
           <div class="family-background">
             <h1>Family Background</h1>
-            <p>My mother's family hails from Iloilo City, where she grew up before eventually moving to Metro Manila. 
-              My father's side is from Pasig City. Following my parents' separation, I was primarily raised by my 
+            <p>My mother's family hails from Iloilo City, where she grew up before eventually moving to Metro Manila.
+              My father's side is from Pasig City. Following my parents' separation, I was primarily raised by my
               mother's family. Having been primarily raised by my mother's family after my parents' separation,
-              they helped me support my education and the tools i need to help 
-              me achieve my ambitions so that one day I will be able to support them back. 
+              they helped me support my education and the tools i need to help
+              me achieve my ambitions so that one day I will be able to support them back.
             </p>
           </div>
         </div>
@@ -126,7 +126,6 @@ onUnmounted(() => {
   justify-content: center;
 }
 .page-container {
-
   height: 85%;
   width: var(--align--wdith);
   overflow-y: scroll;
@@ -161,48 +160,47 @@ onUnmounted(() => {
     box-sizing: border-box;
     font-size: 2em;
     color: white;
-    text-align: left; 
-    display: flex; 
-    align-items: center; 
-    padding: 20px; 
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 20px;
   }
 }
 
 .picture-container {
-  width: 40%; 
-  flex-shrink: 0; 
+  width: 40%;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 10px; 
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
-
-  box-sizing: border-box; 
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
   height: 100%;
 
   .profile-pic {
     width: 100%;
     height: 100%;
-    object-fit: contain; 
-    border-radius: 8px; 
+    object-fit: contain;
+    border-radius: 8px;
   }
 }
 
 .family-background,
 .about-me {
-  width: 60%; 
-  flex-shrink: 0; 
-  padding-left: 30px; 
-  box-sizing: border-box; 
+  width: 60%;
+  flex-shrink: 0;
+  padding-left: 30px;
+  box-sizing: border-box;
   text-align: left;
 }
 
 .describe-myslef{
   text-align: right;
-  padding: 0 30px; 
+  padding: 0 30px;
   box-sizing: border-box;
-  width: 100%; 
+  width: 100%;
 }
 
 
@@ -211,12 +209,12 @@ onUnmounted(() => {
 .about-me{
   p{
     font-size: 18px;
-    color: var(--font-color-default); 
+    color: var(--font-color-default);
   }
   h1{
     color: var(--accent-teal);
-    font-size: 2em; 
-    margin-bottom: 10px; 
+    font-size: 2em;
+    margin-bottom: 10px;
   }
 }
 
@@ -231,13 +229,76 @@ onUnmounted(() => {
   .dot {
     width: 12px;
     height: 12px;
-    background-color: var(--drak-light-background); 
+    background-color: var(--drak-light-background);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   .dot.active {
     background-color: lightgray;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .page-container {
+    height: 100vh;
+    width: 100%;
+  }
+
+  .scroll-item {
+    .scroll-item-content {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+      font-size: 1em;
+    }
+  }
+
+  .picture-container {
+    width: 80%;
+    height: auto;
+    margin-bottom: 20px;
+    order: -1;
+  }
+
+  .about-me,
+  .family-background,
+  .describe-myslef {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    order: 1;
+  }
+
+  .describe-myslef {
+    padding: 0;
+  }
+
+  .describe-myslef,
+  .family-background,
+  .about-me {
+    p {
+      font-size: 0.8em;
+      line-height: 1.4;
+    }
+    h1 {
+      font-size: 1.3em;
+    }
+  }
+
+  .dot-navigation {
+    flex-direction: row;
+    bottom: 100px;
+    left: auto;
+    right: auto;
+
+    gap: 8px;
   }
 }
 </style>

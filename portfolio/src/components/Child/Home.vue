@@ -174,7 +174,7 @@ onMounted(() => {
   color: var(--accent-teal);
   animation: blink 0.75s infinite;
   padding:0;
-  margin-top: -7px;
+
 }
 
 @keyframes blink {
@@ -341,6 +341,10 @@ h1 br {
 
   .specialization {
     justify-content: center;
+  }
+  .blinking-cursor {
+    font-weight: 1000;
+    padding:0;
   }
 
   h1 {

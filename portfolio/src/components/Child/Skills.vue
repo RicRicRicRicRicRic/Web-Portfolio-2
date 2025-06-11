@@ -282,4 +282,55 @@ onMounted(() => {
     }
   }
 }
+
+@media (max-width: 768px) {
+  .certificate-column,
+  .skills-column {
+    width: 50%;
+  }
+  .skill-section{
+    padding-right: 15px;
+    p {
+      font-size: 0.65rem;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      line-height: 1;
+    }
+      .skill-header {
+      .skill-title {
+        display: flex;
+        gap: 10px;
+
+        h3 {
+          color: var(--light-text);
+          font-size: 0.7em;
+          margin: 0;
+        }
+      }
+    }
+  }
+  .content-columns-wrapper {
+    gap: 10px;
+  }
+  .certificate-column{
+      .certificate-content {
+      padding: 10px;
+      .certificate-section {
+
+        padding: 5px 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+
+        p {
+          font-size: 0.8rem;
+        }
+
+        h3 {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+
+}
 </style>
