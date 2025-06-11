@@ -77,6 +77,7 @@ const skillsData = ref([
   },
 ]);
 
+// Trigger skill bar animations shortly after the component is mounted
 onMounted(() => {
   setTimeout(() => {
     shouldAnimateSkills.value = true;
@@ -127,21 +128,22 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .skills-container {
-  height: 95%;
-  max-width: var(--align--wdith);
+  height: 95%; 
+  max-width: var(--align--wdith); 
   box-sizing: border-box;
-  padding: 5px;
+  padding: clamp(10px, 2vw, 20px); 
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%; 
 
   h1 {
-    font-size: 2em;
+    font-size: var(--font-size-xl); 
     font-weight: bold;
     color: var(--accent-teal);
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 30px); 
     text-align: center;
     width: 100%;
   }
@@ -149,16 +151,16 @@ onMounted(() => {
 
 .content-columns-wrapper {
   display: flex;
-  gap: 20px;
+  gap: clamp(15px, 3vw, 20px); 
   width: 100%;
-  height: calc(100% - 70px);
+  height: calc(100% - clamp(60px, 10vh, 70px)); 
   box-sizing: border-box;
-  align-items: stretch;
-  padding: 0 10px;
+  align-items: stretch; 
+  padding: 0 clamp(5px, 1vw, 10px); 
 }
 
 .certificate-column {
-  width: 30%;
+  width: 30%; 
   flex-shrink: 0;
   height: 100%;
   box-sizing: border-box;
@@ -167,35 +169,41 @@ onMounted(() => {
 
   .certificate-content {
     background-color: var(--drak-light-background);
-    padding: 15px;
+    padding: clamp(10px, 2vw, 15px); 
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     height: 100%;
-    overflow-y: auto;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.5vw, 10px); 
 
     .certificate-section {
       background-color: var(--dark-background);
-      padding: 10px 15px;
+      padding: clamp(8px, 1.5vw, 10px) clamp(10px, 2vw, 15px); 
       border-radius: 8px;
-      margin-bottom: 10px;
+      flex-shrink: 0; 
 
       p {
-        font-size: 0.9rem;
+        font-size: var(--font-size-small); 
         color: var(--font-color-default);
+        margin-top: clamp(5px, 1vw, 8px); 
+        margin-bottom: 0; 
+        line-height: 1.4;
       }
 
       h3 {
         color: var(--light-text);
-        font-size: 1.1em;
+        font-size: var(--font-size-base); 
         margin-top: 0;
-        margin-bottom: 5px;
+        margin-bottom: clamp(2px, 0.5vw, 5px); 
       }
     }
   }
 }
 
 .skills-column {
-  width: 70%;
+  width: 70%; 
   flex-shrink: 0;
   height: 100%;
   box-sizing: border-box;
@@ -205,34 +213,35 @@ onMounted(() => {
   .skills-content {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    padding-right: 10px;
+    overflow-y: auto; 
+    padding-right: clamp(5px, 1vw, 10px); 
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: clamp(10px, 2vw, 15px); 
   }
 }
 
 .skill-section {
   background-color: var(--drak-light-background);
-  padding: 15px;
+  padding: clamp(10px, 2vw, 15px); 
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s ease-in-out;
+  flex-shrink: 0; 
 
   &:hover {
     transform: translateY(-5px);
   }
 
   p {
-    font-size: 0.95rem;
+    font-size: var(--font-size-small); 
     color: var(--font-color-default);
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: clamp(8px, 1.5vw, 10px); 
+    margin-bottom: clamp(10px, 2vw, 15px); 
     line-height: 1.4;
   }
 
@@ -240,28 +249,28 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: clamp(5px, 1vw, 10px); 
 
     .skill-title {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: clamp(8px, 1.5vw, 12px); 
 
       h3 {
         color: var(--light-text);
-        font-size: 1.2em;
+        font-size: var(--font-size-medium); 
         margin: 0;
       }
 
       .skill-icon {
-        width: 32px;
-        height: 32px;
+        width: clamp(24px, 5vw, 32px); 
+        height: clamp(24px, 5vw, 32px); 
         filter: var(--img--accent-teal);
       }
     }
 
     .skill-percentage {
-      font-size: 1em;
+      font-size: var(--font-size-base); 
       color: var(--accent-teal);
       font-weight: bold;
     }
@@ -269,7 +278,7 @@ onMounted(() => {
 
   .progress-bar-container {
     width: 100%;
-    height: 10px;
+    height: clamp(8px, 1.5vw, 10px); 
     background-color: var(--dark-background);
     border-radius: 5px;
     overflow: hidden;
@@ -285,62 +294,70 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .skills-container {
-    height: 90%;
-
+    height: 90%; 
+    padding: clamp(5px, 2vw, 15px); 
     h1 {
-      font-size: 1.2em;
-      margin-bottom: 25px;
-      width: 100%;
+      font-size: var(--font-size-large); 
+      margin-bottom: clamp(15px, 5vw, 25px); 
+      white-space: normal; 
     }
+  }
+
+  .content-columns-wrapper {
+    flex-direction: column; 
+    height: calc(100% - clamp(50px, 10vh, 70px)); 
+    padding: 0; 
+    overflow-y: auto; 
+    align-items: center; 
   }
 
   .certificate-column,
   .skills-column {
-    width: 50%;
+    width: 95%; 
+    height: auto; 
+    flex-shrink: 1; 
+    max-height: 50%; 
+    overflow-y: auto; 
   }
+
+  .skills-column .skills-content {
+    padding-right: 0; 
+  }
+
   .skill-section{
-    padding-right: 15px;
+    padding-right: clamp(10px, 2vw, 15px); 
     p {
-      font-size: 0.65rem;
-      margin-top: 10px;
-      margin-bottom: 15px;
-      line-height: 1;
+      font-size: var(--font-size-small); 
+      margin-top: clamp(5px, 1vw, 10px); 
+      margin-bottom: clamp(10px, 2vw, 15px); 
+      line-height: 1.2;
     }
-      .skill-header {
+    .skill-header {
       .skill-title {
-        display: flex;
-        gap: 10px;
+        gap: clamp(5px, 1vw, 10px); 
 
         h3 {
-          color: var(--light-text);
-          font-size: 0.7em;
-          margin: 0;
+          font-size: var(--font-size-small); 
         }
       }
+      .skill-percentage {
+        font-size: var(--font-size-small); 
+      }
     }
-  }
-  .content-columns-wrapper {
-    gap: 10px;
   }
   .certificate-column{
-      .certificate-content {
-      padding: 10px;
+    .certificate-content {
+      padding: clamp(5px, 1vw, 10px); 
       .certificate-section {
-
-        padding: 5px 10px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-
-        p {
-          font-size: 0.8rem;
-        }
-
+        padding: clamp(3px, 0.8vw, 5px) clamp(5px, 1vw, 10px); 
         h3 {
-          font-size: 0.8em;
+          font-size: var(--font-size-small); 
+        }
+        p {
+          font-size: var(--font-size-small); 
         }
       }
     }
   }
-
 }
 </style>

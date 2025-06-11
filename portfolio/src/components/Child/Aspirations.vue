@@ -40,22 +40,22 @@ const aspirations = [
 <style scoped lang="scss">
 .aspirations-page-container {
   height: 95%; 
-  width: var(--align--wdith);
+  width: var(--align--wdith); 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   background-color: var(--dark-background);
   color: var(--light-text);
-  padding: 20px;
+  padding: clamp(15px, 3vw, 20px); 
   overflow-y: auto; 
 
   h1 {
-    font-size: 2.5em;
+    font-size: var(--font-size-xxl); 
     font-weight: bold;
     color: var(--accent-teal);
-    margin-bottom: 40px;
+    margin-bottom: clamp(25px, 5vw, 40px); 
     text-align: center;
     width: 100%;
   }
@@ -63,26 +63,28 @@ const aspirations = [
 
 .aspirations-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   justify-content: center;
-  gap: 30px;
+  gap: clamp(20px, 4vw, 30px); 
   width: 100%;
-  max-width: var(--align--wdith);
+  max-width: var(--align--wdith); 
 }
 
 .aspiration-card {
   background-color: var(--drak-light-background);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  padding: 20px;
+  padding: clamp(7.5px, 1.5vw, 10px); 
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  min-width: 180px;
-  max-width: 250px;
+  flex: 1; 
+  min-width: clamp(150px, 25vw, 180px); 
+  max-width: clamp(240px, 35vw, 270px); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto; 
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-5px);
@@ -90,34 +92,34 @@ const aspirations = [
   }
 
   .icon-container {
-    width: 80px;
-    height: 80px;
+    width: clamp(60px, 10vw, 80px); 
+    height: clamp(60px, 10vw, 80px); 
     background-color: var(--dark-background);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 20px); 
     flex-shrink: 0;
   }
 
   .aspiration-icon {
-    width: 50px;
-    height: 50px;
+    width: clamp(40px, 7vw, 50px); 
+    height: clamp(40px, 7vw, 50px); 
     object-fit: contain;
     filter: var(--img--accent-teal);
   }
 
   h2 {
-    font-size: 1.8em;
+    font-size: var(--font-size-xl); 
     font-weight: bold;
     color: var(--accent-teal);
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 2vw, 15px); 
   }
 
   p {
-    font-size: 1em;
-    line-height: 1.2;
+    font-size: var(--font-size-base); 
+    line-height: 1.4; 
     color: var(--light-text);
   }
 }
@@ -125,42 +127,42 @@ const aspirations = [
 @media (max-width: 768px) {
   .aspirations-page-container {
     width: 100%;
-    padding: 10px;
-    justify-content: flex-start;
+    padding: clamp(10px, 3vw, 15px); 
+    justify-content: flex-start; 
   }
 
   .aspirations-page-container h1 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
+    font-size: var(--font-size-xl); 
+    margin-bottom: clamp(15px, 4vw, 20px); 
   }
   .aspirations-grid {
     flex-direction: column; 
     align-items: center;
-    gap: 15px;
+    gap: clamp(10px, 3vw, 15px); 
     width: 100%; 
   }
 
   .aspiration-card {
-    width: 85%; 
-    max-width: 400px;
-    min-width: unset;
-    padding: 12px;
+    width: 90%; 
+    max-width: clamp(280px, 70vw, 400px); 
+    min-width: unset; 
+    padding: clamp(10px, 2.5vw, 12px); 
     .icon-container {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
+      width: clamp(40px, 8vw, 50px); 
+      height: clamp(40px, 8vw, 50px); 
+      margin-bottom: clamp(8px, 2vw, 10px); 
     }
     .aspiration-icon {
-      width: 30px;
-      height: 30px;
+      width: clamp(24px, 5vw, 30px); 
+      height: clamp(24px, 5vw, 30px); 
     }
     h2 {
-      font-size: 1em;
-      margin-bottom: 4px;
+      font-size: var(--font-size-large); 
+      margin-bottom: clamp(5px, 1.5vw, 8px); 
     }
     p {
-      font-size: 0.8em;
-      line-height: 1;
+      font-size: var(--font-size-small); 
+      line-height: 1.2;
     }
   }
 }

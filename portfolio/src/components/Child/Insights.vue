@@ -36,6 +36,7 @@ const currentTitle = computed(() => {
   return challengeDetails[selectedChallenge.value as keyof typeof challengeDetails]?.title || "Details";
 });
 
+
 const selectChallenge = (challengeId: string) => {
   selectedChallenge.value = challengeId;
 };
@@ -86,23 +87,23 @@ const selectChallenge = (challengeId: string) => {
 
 <style scoped lang="scss">
 .insights-page-container {
-  height: 95%;
-  width: var(--align--wdith);
+  height: 95%; 
+  width: var(--align--wdith); 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   background-color: var(--dark-background);
   color: var(--light-text);
-  padding: 20px;
-  overflow-y: auto;
+  padding: clamp(15px, 3vw, 20px); 
+  overflow-y: auto; 
 
   h1 {
-    font-size: 2.5em;
+    font-size: var(--font-size-xxl); 
     font-weight: bold;
     color: var(--accent-teal);
-    margin-bottom: 30px;
+    margin-bottom: clamp(20px, 4vw, 30px); 
     text-align: center;
     width: 100%;
   }
@@ -110,31 +111,31 @@ const selectChallenge = (challengeId: string) => {
 
 .challenge-buttons-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; 
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: clamp(15px, 3vw, 20px); 
+  margin-bottom: clamp(20px, 4vw, 30px); 
   width: 100%;
-  max-width: 900px;
+  max-width: 900px; 
 }
 
 .challenge-button {
   background-color: var(--drak-light-background);
   color: var(--light-text);
   border: 1px solid var(--drak-light-background);
-  padding: 15px 25px;
+  padding: clamp(10px, 2.5vw, 15px) clamp(15px, 3.5vw, 25px); 
   border-radius: 12px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: var(--font-size-medium); 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: clamp(8px, 1.5vw, 10px); 
   transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  flex: 1 1 auto;
-  min-width: 150px;
-  max-width: 250px;
+  flex: 1 1 auto; 
+  min-width: clamp(120px, 25vw, 150px); 
+  max-width: clamp(200px, 30vw, 250px); 
 
   &:hover {
     background-color: var(--dark-background);
@@ -156,8 +157,8 @@ const selectChallenge = (challengeId: string) => {
 }
 
 .button-icon {
-  width: 40px;
-  height: 40px;
+  width: clamp(30px, 6vw, 40px); 
+  height: clamp(30px, 6vw, 40px); 
   object-fit: contain;
   filter: var(--img--accent-teal);
   transition: filter 0.3s ease;
@@ -167,17 +168,19 @@ const selectChallenge = (challengeId: string) => {
   background-color: var(--drak-light-background);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  padding: 30px;
+  padding: clamp(20px, 4vw, 30px); 
   text-align: center;
   width: 100%;
   max-width: 90%;
-  height: 175px;
+  height: clamp(120px, 25vh, 175px); 
+  min-height: 100px; 
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: auto; 
 
   p {
-    font-size: 1.1em;
+    font-size: var(--font-size-base); 
     line-height: 1.6;
     color: var(--light-text);
     max-width: 800px;
@@ -190,45 +193,43 @@ const selectChallenge = (challengeId: string) => {
   }
 }
 
+// Media query for mobile responsiveness (max-width 768px)
 @media (max-width: 768px) {
   .insights-page-container {
     width: 100%;
     height: 100%;
-    padding: 15px;
-      h1 {
-      font-size: 1.8em; 
-      font-weight: bold;
-      color: var(--accent-teal);
-      margin-bottom: 10px; 
-      text-align: center;
-      width: 100%;
+    padding: clamp(10px, 3vw, 15px); 
+    h1 {
+      font-size: var(--font-size-xl); 
+      margin-bottom: clamp(10px, 3vw, 20px); 
       white-space: normal; 
     }
   }
 
   .challenge-buttons-container {
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: clamp(10px, 3vw, 15px); 
+    margin-bottom: clamp(15px, 4vw, 20px); 
   }
   .challenge-button {
-    width: 90%;
-    max-width: 280px;
-    padding: 12px 20px;
-    font-size: 1em;
-    gap: 8px;
+    width: 90%; 
+    max-width: 280px; 
+    padding: clamp(8px, 2.5vw, 12px) clamp(10px, 3vw, 20px); 
+    font-size: var(--font-size-base); 
+    gap: clamp(5px, 1.5vw, 8px); 
     .button-icon {
-      width: 32px;
-      height: 32px;
+      width: clamp(28px, 6vw, 32px); 
+      height: clamp(28px, 6vw, 32px); 
     }
   }
   .description-section {
-    padding: 20px;
-    height: auto;
-    max-width: 95%;
+    padding: clamp(15px, 4vw, 20px); 
+    height: clamp(100px, 20vh, 150px); 
+    min-height: 200px; 
+    max-width: 95%; 
     p {
-      font-size: 0.9em;
+      font-size: var(--font-size-small); 
       line-height: 1.5;
     }
   }
@@ -236,29 +237,30 @@ const selectChallenge = (challengeId: string) => {
 
 @media (max-width: 480px) {
   .insights-page-container {
-    padding: 10px;
+    padding: clamp(5px, 2vw, 10px); 
   }
   .insights-page-container h1 {
-    font-size: 1.4em; 
-    margin-bottom: 15px;
-    white-space: normal; 
+    font-size: var(--font-size-large); 
+    margin-bottom: clamp(10px, 3vw, 15px); 
   }
   .challenge-button {
-    width: 95%;
-    padding: 10px 15px;
-    font-size: 0.9em;
+    width: 95%; 
+    padding: clamp(8px, 2.5vw, 10px) clamp(10px, 3vw, 15px); 
+    font-size: var(--font-size-small); 
     .button-icon {
-      width: 28px;
-      height: 28px;
+      width: clamp(24px, 5vw, 28px); 
+      height: clamp(24px, 5vw, 28px); 
     }
   }
   .description-section {
-    padding: 10px;
-    width: 80%;
+    padding: clamp(10px, 3vw, 15px); 
+    width: 90%; 
+    height: clamp(80px, 18vh, 120px); 
     p {
-      font-size: 0.8em;
+      font-size: var(--font-size-small); 
       line-height: 1.4;
     }
   }
 }
+
 </style>

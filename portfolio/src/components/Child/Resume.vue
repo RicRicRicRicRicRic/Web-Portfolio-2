@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import resume from '@/assets/Estremadura_CV_2.pdf'
-const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg";
+import resume from '@/assets/Estremadura_CV_2.pdf' 
+const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg"; 
 const activeTab = ref(3); 
 const shouldAnimateSkills = ref(false); 
 
@@ -19,10 +19,9 @@ const setActiveTab = (index: number) => {
 const calendarIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/calendar.svg";
 const godotIcon = "https://simpleicons.org/icons/godotengine.svg";
 const vueIcon = "https://simpleicons.org/icons/vuedotjs.svg";
-const jsIcon = "https://simpleicons.org/icons/nodedotjs.svg";
+const jsIcon = "https://simpleicons.org/icons/nodedotjs.js.svg";
 const fastapiIcon = "https://simpleicons.org/icons/fastapi.svg";
 const dotnetiIcon = "https://simpleicons.org/icons/dotnet.svg";
-
 
 const skillsData = ref([
   {
@@ -64,13 +63,11 @@ const skillsData = ref([
     <div class="navigation-container">
       <h1 class="nav-title">Why hire me?</h1>
       <p class="nav-description">Explore my robust academic achievements and versatile skill set as a 3rd-year BSCS student, continually applying knowledge and ready to make a significant impact on your team's success.</p>
-
       <button :class="{ active: activeTab === 0 }" @click="setActiveTab(0)">Experience</button>
       <button :class="{ active: activeTab === 1 }" @click="setActiveTab(1)">Education</button>
       <button :class="{ active: activeTab === 2 }" @click="setActiveTab(2)">Skills</button>
       <button :class="{ active: activeTab === 3 }" @click="setActiveTab(3)">About me</button>
     </div>
-
     <div class="display-container">
       <div v-if="activeTab === 0" class="display-content">
         <h1>Experience Gained</h1>
@@ -210,16 +207,19 @@ const skillsData = ref([
 
 <style scoped lang="scss">
 .container {
-  height: 100%;
-  width: var(--align--wdith);
+  height: 100%; 
+  width: var(--align--wdith); 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box; 
+  padding: clamp(10px, 2vw, 20px) 0; 
+  gap: clamp(0.625px, 0.094vw, 1.25px); 
 }
 .navigation-container {
-  width: 35%;
-  height: 92.5%;
+  width: 35%; 
+  height: 92.5%; 
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -227,33 +227,36 @@ const skillsData = ref([
   justify-content: start;
   background-color: var(--dark-background);
   color: var(--font-color-default);
-  padding: 10px;
+  padding: clamp(10px, 2vw, 20px); 
+  overflow-y: auto; 
+
   .nav-title {
-    font-size: 2em;
+    font-size: var(--font-size-large); 
     font-weight: bold;
-    color: #e0e0e0;
+    color: var(--logo-text); 
     text-align: left;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 3vw, 20px); 
   }
   .nav-description {
-    font-size: 1rem;
-    color: #a0a0a0;
+    font-size: var(--font-size-base); 
+    color: var(--font-color-default);
     width: 100%;
     margin-top: 0;
-    margin-bottom: 30px;
+    margin-bottom: clamp(20px, 4vw, 30px); 
+    line-height: 1.4;
   }
   button {
     width: 100%;
     max-width: 100%;
-    padding: 15px 20px;
-    margin-bottom: 10px;
+    padding: clamp(10px, 2.5vw, 15px) clamp(15px, 3.5vw, 20px); 
+    margin-bottom: clamp(5px, 1vw, 10px); 
     cursor: pointer;
     background-color: var(--drak-light-background); 
-    color: #fff;
+    color: var(--light-text);
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: var(--font-size-base); 
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 0 0 transparent;
@@ -262,74 +265,85 @@ const skillsData = ref([
       background-color: #555;
     }
     &.active {
-      background-color: #00FF99;
-      color: #000;
+      background-color: var(--accent-teal-hover); 
+      color: var(--dark-background);
       box-shadow: var(--shadow-teal);
     }
   }
 }
 
 .display-container {
-  width: 65%;
-  height: 92.5%;
+  width: 65%; 
+  height: 92.5%; 
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; 
   background-color: var(--dark-background);
-  color: #f0f0f0;
-  padding: 10px;
+  color: var(--light-text);
+  padding: clamp(10px, 2vw, 20px); 
 }
 
 .display-content {
   text-align: left;
   width: 90%;
-  height: 100%;
-  overflow: hidden;
+  height: 100%; 
+  overflow-y: auto; 
+  padding-right: 5px; 
+  box-sizing: border-box;
+
   h1 {
-    font-size: 2em;
+    font-size: var(--font-size-large); 
     font-weight: bold;
-    color: #e0e0e0;
-    margin-bottom: 20px;
+    color: var(--logo-text);
+    margin-bottom: clamp(10px, 2vw, 20px); 
+    text-align: center; 
+    width: 100%;
   }
-    p {
-    color: #ccc;
-    font-size: 1rem;
+  p {
+    color: var(--font-color-default);
+    font-size: var(--font-size-base); 
+    line-height: 1.5;
   }
 }
 
 .about-content,
 .skills-content,
 .experience-content,
-.academic-content{
+.academic-content {
   width: 100%;
-  max-height: 80%;
-  overflow: auto;
+  height: auto; 
+  overflow-y: visible; 
+  box-sizing: border-box;
+  padding-right: 0; 
 }
 
 .academic-content{
   .academic-section{
     background-color: var(--drak-light-background); 
-    margin: 12px;
-    padding: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 12px); 
+    padding: clamp(8px, 1.5vw, 12px); 
     border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     p{
       color: var(--font-color-default);
-      font-size: 14px;
+      font-size: var(--font-size-small); 
+      line-height: 1.4;
     }
     .acad-title{
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: clamp(8px, 1.5vw, 12px); 
       h2{
         color: var(--accent-teal);
-        margin-bottom: 0;
+        margin-bottom: clamp(2px, 0.5vw, 5px); 
         margin-top: 0; 
+        font-size: var(--font-size-medium); 
       }
       .calendar-icon{
-        width: 24px;
-        height: 24px;
+        width: clamp(20px, 4vw, 24px); 
+        height: clamp(20px, 4vw, 24px); 
         filter: var(--img--accent-teal);
         vertical-align: middle; 
       }
@@ -341,27 +355,30 @@ const skillsData = ref([
  .experience-section,
  .skill-section { 
     background-color: var(--drak-light-background); 
-    margin: 12px;
-    padding: 12px;
+    margin-bottom: clamp(8px, 1.5vw, 12px); 
+    padding: clamp(8px, 1.5vw, 12px); 
     border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     p{
-      font-size: 16px;
+      font-size: var(--font-size-small); 
       color: var(--font-color-default); 
+      line-height: 1.4;
     }
     .exp-title,
     .skill-title { 
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: clamp(8px, 1.5vw, 12px); 
       h3{
         color: var(--accent-teal);
-        margin-bottom: 0;
+        margin-bottom: clamp(2px, 0.5vw, 5px); 
         margin-top: 0; 
+        font-size: var(--font-size-medium); 
       }
       .exp-icon,
       .skill-icon { 
-        width: 24px;
-        height: 24px;
+        width: clamp(20px, 4vw, 24px); 
+        height: clamp(20px, 4vw, 24px); 
         filter: var(--img--accent-teal);
         vertical-align: middle; 
       }
@@ -374,16 +391,16 @@ const skillsData = ref([
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: clamp(5px, 1vw, 8px); 
   }
   .skill-percentage {
-    font-size: 0.9em;
+    font-size: var(--font-size-base); 
     color: var(--accent-teal);
     font-weight: bold;
   }
   .progress-bar-container {
     width: 100%;
-    height: 8px;
+    height: clamp(6px, 1.2vw, 8px); 
     background-color: var(--dark-background); 
     border-radius: 5px;
     overflow: hidden;
@@ -401,25 +418,27 @@ const skillsData = ref([
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: clamp(20px, 4vw, 30px); 
+
     .download-cv {
       background-color: var(--dark-background);
       color: var(--accent-teal);
       border: 2px solid var(--accent-teal);
-      padding: 12px 25px;
+      padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 25px); 
       border-radius: 15px;
       cursor: pointer;
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: clamp(3px, 0.8vw, 5px); 
       transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
-      font-size: 0.95em;
+      font-size: var(--font-size-base); 
       box-shadow: 0 0 0 transparent; 
       text-decoration: none;
 
       img {
-        width: 25px;
-        height: 25px;
+        width: clamp(20px, 4vw, 25px); 
+        height: clamp(20px, 4vw, 25px); 
         margin-right: -10px;
         filter: var(--img--accent-teal);
       }
@@ -438,72 +457,131 @@ const skillsData = ref([
   .about-desc{
     p{
       color: var(--font-color-default);
+      font-size: var(--font-size-base); 
+      line-height: 1.6;
+      margin-bottom: clamp(15px, 3vw, 20px); 
       strong {
         color: var(--accent-teal);
       }
     }
   }
   .about-info {
+    display: grid;
+    gap: clamp(8px, 1.5vw, 10px) clamp(15px, 3vw, 20px); 
+    margin-bottom: clamp(20px, 4vw, 30px); 
     p {
-      font-size: 16px;
+      font-size: var(--font-size-base); 
       strong {
         color: var(--accent-teal);
+        margin-right: 5px;
+      }
+      span {
+        color: var(--font-color-default);
       }
     }
   }
 }
+
 
 @media (max-width: 768px) {
   .container {
     flex-direction: column; 
     height: 100%; 
     width: 100%;
-    padding: 0; 
+    padding: clamp(10px, 3vw, 15px) 0; 
     box-sizing: border-box; 
-    overflow-y: auto;
+    overflow-y: auto; 
     align-items: center; 
     justify-content: flex-start; 
   }
 
   .navigation-container {
-    width: 100%; 
+    width: 95%; 
     height: auto; 
-    button {
-      width: 90%;
-      max-width: 90%;
-      padding: 10px 15px;
-      margin-bottom: 5px;
-    }
+    padding: clamp(10px, 3vw, 15px); 
+    margin-bottom: clamp(15px, 3vw, 20px); 
+
     .nav-title {
-      margin-top: 30px;
-      font-size: 1.5em;
+      margin-top: clamp(15px, 5vw, 30px); 
+      font-size: var(--font-size-xl); 
       width: 90%;
-      margin-bottom: 5px;
+      margin-bottom: clamp(5px, 1.5vw, 10px); 
+      text-align: center; 
     }
-      .nav-description {
-      font-size: 0.9rem;
+    .nav-description {
+      font-size: var(--font-size-small); 
       width: 90%;
-      margin-bottom: 10px;
+      margin-bottom: clamp(8px, 2vw, 10px); 
+      text-align: center; 
+    }
+    button {
+      width: 90%; 
+      max-width: 90%;
+      padding: clamp(8px, 2.5vw, 10px) clamp(10px, 3vw, 15px); 
+      margin-bottom: clamp(3px, 1vw, 5px); 
+      font-size: var(--font-size-small); 
     }
   }
   .display-container {
-    width: 100%; 
+    width: 95%; 
     height: auto; 
+    padding: clamp(10px, 3vw, 15px); 
+    box-shadow: none; 
+    overflow-y: auto; 
+
     h1{
-      font-size: 1.5em;
+      font-size: var(--font-size-large); 
+      margin-bottom: clamp(8px, 2vw, 15px); 
+    }
+    p {
+      font-size: var(--font-size-small); 
+      line-height: 1.3;
     }
   }
   .about-content,
   .skills-content,
   .experience-content,
   .academic-content{
-
-
-    h2,
-    h3{
-      font-size: 1em;
+    max-height: unset; 
+    h2, h3{
+      font-size: var(--font-size-medium); 
     }
   }
 
+  .about-content .about-info {
+    grid-template-columns: 1fr; 
+    gap: clamp(5px, 1.5vw, 8px); 
+    p {
+      font-size: var(--font-size-small); 
+    }
+  }
+  .about-content .download-container {
+    margin-top: clamp(15px, 3vw, 20px); 
+  }
+
+  .academic-content .academic-section,
+  .experience-content .experience-section,
+  .skills-content .skill-section {
+    padding: clamp(8px, 2vw, 10px); 
+    margin-bottom: clamp(5px, 1vw, 8px); 
+    p {
+      font-size: var(--font-size-small); 
+    }
+    .acad-title h2,
+    .exp-title h3,
+    .skill-title h3 {
+      font-size: var(--font-size-base); 
+    }
+    .calendar-icon,
+    .exp-icon,
+    .skill-icon {
+      width: clamp(18px, 4vw, 20px); 
+      height: clamp(18px, 4vw, 20px); 
+    }
+    .skill-percentage {
+      font-size: var(--font-size-small); 
+    }
+  }
 }
+
 </style>

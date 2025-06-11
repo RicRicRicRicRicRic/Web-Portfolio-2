@@ -9,7 +9,6 @@ const youtubeIcon = "https://simpleicons.org/icons/youtube.svg";
 const facebookIcon = "https://simpleicons.org/icons/facebook.svg";
 const downloadIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/download.svg";
 
-
 const githubLink = "https://github.com/RicRicRicRicRicRic";
 const instagramLink = "https://www.instagram.com/ricmichaelestremadura/";
 const youtubeLink = "https://www.youtube.com/@RICMICHAELESTREMADURA";
@@ -55,10 +54,10 @@ const typeEffect = () => {
     }
   }
 };
+
 onMounted(() => {
   typeEffect();
 });
-
 
 </script>
 
@@ -67,33 +66,33 @@ onMounted(() => {
   <div class="main-about-section">
     <div class="about-content">
       <p class="specialization">{{ typedSpecialization }}<span class="blinking-cursor">|</span></p>
-        <h1>Hello I'm Ric.</h1>
+      <h1>Hello I'm Ric.</h1>
       <p class="description">3rd year computer science student,
-          excels at crafting elegant digital experiences and proficient
-          in various programming languages and technologies.</p>
+        excels at crafting elegant digital experiences and proficient
+        in various programming languages and technologies.</p>
       <div class="action-buttons">
         <a :href="resume" download="Ric_Michael_Estremadura_CV.pdf" class="download-cv">
-            Download CV
+          Download CV
           <img :src="downloadIcon" alt="Download Icon">
         </a>
-          <div class="social-links">
-            <a :href="githubLink" target="_blank" rel="noopener noreferrer">
-              <img :src="githubIcon" alt="GitHub">
-            </a>
-            <a :href="instagramLink" target="_blank" rel="noopener noreferrer">
-              <img :src="instagramIcon" alt="Instagram"> </a>
-            <a :href="youtubeLink" target="_blank" rel="noopener noreferrer">
-              <img :src="youtubeIcon" alt="YouTube">
-            </a>
-            <a :href="facebookLink" target="_blank" rel="noopener noreferrer">
-              <img :src="facebookIcon" alt="Facebook"> </a>
-          </div>
+        <div class="social-links">
+          <a :href="githubLink" target="_blank" rel="noopener noreferrer">
+            <img :src="githubIcon" alt="GitHub">
+          </a>
+          <a :href="instagramLink" target="_blank" rel="noopener noreferrer">
+            <img :src="instagramIcon" alt="Instagram"> </a>
+          <a :href="youtubeLink" target="_blank" rel="noopener noreferrer">
+            <img :src="youtubeIcon" alt="YouTube">
+          </a>
+          <a :href="facebookLink" target="_blank" rel="noopener noreferrer">
+            <img :src="facebookIcon" alt="Facebook"> </a>
+        </div>
       </div>
     </div>
-      <div class="profile-section">
-        <img :src="profileImage" alt="Profile Picture" class="pfp-pic">
-      </div>
+    <div class="profile-section">
+      <img :src="profileImage" alt="Profile Picture" class="pfp-pic">
     </div>
+  </div>
   <div class="stats-grid">
     <div>
       <span>3</span>
@@ -117,40 +116,41 @@ onMounted(() => {
 
 
 <style lang="scss">
-
-
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: clamp(10px, 2vw, 20px);
   box-sizing: border-box;
   overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  gap: clamp(30px, 6vw, 50px);
 }
 
 .main-about-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: clamp(30px, 6vw, 50px);
   flex-wrap: wrap;
   width: 100%;
   max-width: var(--align--wdith);
-  margin-bottom: 50px;
+  margin-bottom: 0;
 }
 
 .about-content {
   flex: 1;
-  min-width: 300px;
+  min-width: clamp(280px, 60vw, 300px);
   color: var(--light-text);
   order: 1;
 }
 
 .profile-section {
   flex-shrink: 0;
-  width: 300px;
-  height: 300px;
+  width: clamp(250px, 50vw, 300px);
+  height: clamp(250px, 50vw, 300px);
   border-radius: 50%;
   border: 2px dashed var(--accent-teal);
   display: flex;
@@ -161,12 +161,13 @@ onMounted(() => {
 }
 
 .specialization {
-  font-size: 1.5em;
+  font-size: var(--font-size-xl);
   color: var(--accent-teal);
   margin-bottom: 0px;
   min-height: 1.5em;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .blinking-cursor {
@@ -174,7 +175,6 @@ onMounted(() => {
   color: var(--accent-teal);
   animation: blink 0.75s infinite;
   padding:0;
-
 }
 
 @keyframes blink {
@@ -182,55 +182,49 @@ onMounted(() => {
   50% { opacity: 0; }
 }
 
-
 h1 {
-  font-size: 3rem;
+  font-size: var(--font-size-xxl);
   font-weight: bold;
   color: var(--light-text);
   line-height: 1.1;
   margin-top: 0;
-  margin-bottom: 20px;
-}
-
-h1 br {
-  display: none;
+  margin-bottom: clamp(15px, 3vw, 20px);
 }
 
 .description {
-  font-size: 1em;
+  font-size: var(--font-size-base);
   line-height: 1.6;
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 4vw, 30px);
   color: var(--font-color-default);
 }
 
 .action-buttons {
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: clamp(10px, 2vw, 20px);
+  margin-bottom: clamp(25px, 5vw, 40px);
   flex-wrap: wrap;
 }
-
 
 .download-cv {
   background-color: var(--dark-background);
   color: var(--accent-teal);
   border: 2px solid var(--accent-teal);
-  padding: 12px 25px;
+  padding: clamp(8px, 2vw, 12px) clamp(15px, 3vw, 25px);
   border-radius: 15px;
   cursor: pointer;
   font-weight: bold;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: clamp(3px, 0.8vw, 5px);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  font-size: 0.95em;
+  font-size: var(--font-size-base);
   box-shadow: 0 0 0 transparent;
   text-decoration: none;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: clamp(20px, 4vw, 25px);
+    height: clamp(20px, 4vw, 25px);
     margin-right: -10px;
     filter: var(--img--accent-teal);
   }
@@ -248,12 +242,12 @@ h1 br {
 
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: clamp(10px, 2vw, 15px);
 }
 
 .social-links a {
-  width: 35px;
-  height: 35px;
+  width: clamp(30px, 6vw, 35px);
+  height: clamp(30px, 6vw, 35px);
   border-radius: 50%;
   border: 1px solid var(--font-color-default);
   display: flex;
@@ -268,14 +262,14 @@ h1 br {
   }
 
   img {
-    width: 20px;
-    height: 20px;
+    width: clamp(16px, 3vw, 20px);
+    height: clamp(16px, 3vw, 20px);
     filter: var(--img--accent-teal);
   }
 }
 
 .pfp-pic {
-  margin-left: 40px;
+  margin-left: clamp(20px, 4vw, 40px);
   height: 100%;
   width: auto;
   object-fit: cover;
@@ -287,11 +281,13 @@ h1 br {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(100px, 20vw, 120px), 1fr));
+  gap: clamp(20px, 4vw, 30px);
   width: 100%;
   max-width: var(--align--wdith);
   justify-items: center;
+  margin-top: 0;
+  padding-bottom: clamp(10px, 2vw, 20px);
 }
 
 .stats-grid > div {
@@ -301,22 +297,22 @@ h1 br {
 }
 
 .stats-grid > div > span:first-child {
-  font-size: 2.5em;
+  font-size: var(--font-size-xl);
   font-weight: bold;
   color: var(--accent-teal);
-  margin-bottom: 5px;
+  margin-bottom: clamp(3px, 0.8vw, 5px);
 }
 
 .stats-grid > div > span:last-child {
-  font-size: 0.9em;
+  font-size: var(--font-size-small);
   color: var(--font-color-default);
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 15px;
-    margin-top: -30px;
-    gap: 30px;
+    padding: clamp(10px, 3vw, 15px);
+    margin-top: clamp(-20px, -4vw, -30px);
+    gap: clamp(20px, 5vw, 30px);
     justify-content: flex-start;
     align-items: center;
   }
@@ -324,58 +320,80 @@ h1 br {
   .main-about-section {
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: clamp(15px, 4vw, 20px);
     margin-bottom: 0px;
   }
 
   .about-content {
     order: 2;
     min-width: unset;
+    max-width: 95%;
+    font-size: var(--font-size-base);
   }
 
   .profile-section {
     order: 1;
-    width: 250px;
-    height: 250px;
+    width: clamp(200px, 50vw, 250px);
+    height: clamp(200px, 50vw, 250px);
   }
 
   .specialization {
     justify-content: center;
+    font-size: var(--font-size-medium);
+    white-space: normal;
   }
   .blinking-cursor {
-    font-weight: 1000;
     padding:0;
   }
 
   h1 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    white-space: nowrap;
-  }
-
-  h1 br {
-    display: none;
+    font-size: var(--font-size-xl);
+    margin-bottom: clamp(5px, 1.5vw, 10px);
+    white-space: normal;
   }
 
   .action-buttons {
     justify-content: center;
+    gap: clamp(8px, 2vw, 15px);
+    margin-bottom: clamp(20px, 4vw, 30px);
+  }
+  .download-cv {
+    padding: clamp(6px, 1.5vw, 10px) clamp(10px, 2.5vw, 20px);
+    font-size: var(--font-size-small);
+    img {
+      width: clamp(18px, 4vw, 22px);
+      height: clamp(18px, 4vw, 22px);
+    }
+  }
+  .social-links a {
+    width: clamp(28px, 5vw, 32px);
+    height: clamp(28px, 5vw, 32px);
+    img {
+      width: clamp(14px, 3vw, 18px);
+      height: clamp(14px, 3vw, 18px);
+    }
   }
   .stats-grid {
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: clamp(15px, 4vw, 20px);
+    grid-template-columns: repeat(auto-fit, minmax(clamp(80px, 20vw, 100px), 1fr));
     justify-items: center;
     margin-top: 0;
-    padding-bottom: 20px;
+    padding-bottom: clamp(10px, 3vw, 20px);
   }
   .stats-grid > div {
     align-items: center;
-    font-size: 0.5em;
+    font-size: var(--font-size-small);
+  }
+  .stats-grid > div > span:first-child {
+    font-size: var(--font-size-large);
   }
   .description {
-    font-size: 0.75em;
-    line-height: 1.1;
-    margin-bottom: 30px;
-    color: var(--font-color-default);
+    font-size: var(--font-size-small);
+    line-height: 1.3;
+    margin-bottom: clamp(15px, 3vw, 20px);
+  }
+  .pfp-pic {
+    margin-left: clamp(0px, 0vw, 0px);
   }
 }
 </style>

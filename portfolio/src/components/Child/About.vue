@@ -5,7 +5,7 @@ import familyImage from '@/assets/family_pic.jpg'
 
 const pageContainer = ref<HTMLElement | null>(null);
 const activeDot = ref(0);
-let observer: IntersectionObserver | null = null;
+let observer: IntersectionObserver | null = null; 
 
 const createObserver = () => {
   if (!pageContainer.value) return;
@@ -57,7 +57,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class ="container">
+  <div class="container">
     <div class="page-container" ref="pageContainer">
       <div class="scroll-item">
         <div class="scroll-item-content">
@@ -118,16 +118,19 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-.container{
+.container {
   height: 100%;
   width: var(--align--wdith);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(10px, 2vw, 20px) 0;
 }
+
 .page-container {
   height: 85%;
-  width: var(--align--wdith);
+  width: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   box-sizing: border-box;
@@ -158,17 +161,17 @@ onUnmounted(() => {
     max-width: var(--align--wdith);
     width: 100%;
     box-sizing: border-box;
-    font-size: 2em;
-    color: white;
+    color: var(--light-text);
     text-align: left;
     display: flex;
     align-items: center;
-    padding: 20px;
+    gap: clamp(20px, 4vw, 30px);
+    padding: clamp(15px, 3vw, 20px);
   }
 }
 
 .picture-container {
-  width: 40%;
+  width: clamp(250px, 40%, 300px);
   flex-shrink: 0;
   display: flex;
   justify-content: center;
@@ -177,76 +180,79 @@ onUnmounted(() => {
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  height: 100%;
+  height: clamp(200px, 40vh, 250px);
 
   .profile-pic {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px;
   }
 }
 
 .family-background,
 .about-me {
-  width: 60%;
+  width: clamp(300px, 60%, 500px);
   flex-shrink: 0;
-  padding-left: 30px;
+  padding-left: clamp(15px, 3vw, 30px);
   box-sizing: border-box;
   text-align: left;
 }
 
 .describe-myslef{
   text-align: right;
-  padding: 0 30px;
+  padding: 0 clamp(15px, 3vw, 30px);
   box-sizing: border-box;
   width: 100%;
 }
-
 
 .describe-myslef,
 .family-background,
 .about-me{
   p{
-    font-size: 18px;
+    font-size: var(--font-size-base);
     color: var(--font-color-default);
+    line-height: 1.6;
   }
   h1{
     color: var(--accent-teal);
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: var(--font-size-xxl);
+    margin-bottom: clamp(10px, 2vw, 15px);
+    white-space: normal;
   }
 }
 
-
 .dot-navigation {
   position: fixed;
-  right: 250px;
+  top: 50%;
+  right: clamp(150px, 25vw, 250px);
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(8px, 1.5vw, 10px);
   z-index: 10;
+
   .dot {
-    width: 12px;
-    height: 12px;
+    width: clamp(10px, 2vw, 12px);
+    height: clamp(10px, 2vw, 12px);
     background-color: var(--drak-light-background);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   .dot.active {
-    background-color: lightgray;
+    background-color: var(--accent-teal);
   }
 }
 
 @media (max-width: 768px) {
   .container {
     width: 100%;
-    padding: 10px;
+    padding: clamp(5px, 1.5vw, 10px);
   }
 
   .page-container {
-    height: 100vh;
+    height: 100%;
     width: 100%;
   }
 
@@ -254,15 +260,15 @@ onUnmounted(() => {
     .scroll-item-content {
       flex-direction: column;
       text-align: center;
-      padding: 20px 15px;
-      font-size: 1em;
+      padding: clamp(15px, 4vw, 20px) clamp(10px, 3vw, 15px);
+      gap: clamp(15px, 4vw, 20px);
     }
   }
 
   .picture-container {
-    width: 80%;
-    height: auto;
-    margin-bottom: 20px;
+    width: clamp(180px, 50vw, 250px);
+    height: clamp(150px, 40vw, 200px);
+    margin-bottom: clamp(10px, 2vw, 20px);
     order: -1;
   }
 
@@ -282,23 +288,29 @@ onUnmounted(() => {
 
   .describe-myslef,
   .family-background,
-  .about-me {
+  .about-me{
     p {
-      font-size: 0.8em;
+      font-size: var(--font-size-small);
       line-height: 1.4;
     }
     h1 {
-      font-size: 1.3em;
+      font-size: var(--font-size-xl);
+      margin-bottom: clamp(5px, 1vw, 10px);
     }
   }
 
   .dot-navigation {
-    flex-direction: row;
-    bottom: 100px;
-    left: auto;
+    bottom: clamp(200px, 40vw, 600px); 
+    top: auto; 
+    left: 50%;
     right: auto;
-
-    gap: 8px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: clamp(5px, 1.2vw, 8px);
+  }
+  .dot {
+    width: clamp(8px, 1.8vw, 10px);
+    height: clamp(8px, 1.8vw, 10px);
   }
 }
 </style>
