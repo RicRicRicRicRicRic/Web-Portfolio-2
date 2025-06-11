@@ -284,6 +284,16 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
+  .skills-container {
+    height: 90%;
+
+    h1 {
+      font-size: 1.2em;
+      margin-bottom: 25px;
+      width: 100%;
+    }
+  }
+
   .certificate-column,
   .skills-column {
     width: 50%;

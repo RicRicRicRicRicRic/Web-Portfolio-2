@@ -43,10 +43,10 @@ const selectChallenge = (challengeId: string) => {
 
 <template>
   <div class="insights-page-container">
-    <h1>{{ currentTitle }}</h1> 
+    <h1>{{ currentTitle }}</h1>
     <div class="challenge-buttons-container">
-      <button 
-        class="challenge-button" 
+      <button
+        class="challenge-button"
         :class="{ 'active': selectedChallenge === 'debugging' }"
         @click="selectChallenge('debugging')"
       >
@@ -54,8 +54,8 @@ const selectChallenge = (challengeId: string) => {
         <span>Debugging</span>
       </button>
 
-      <button 
-        class="challenge-button" 
+      <button
+        class="challenge-button"
         :class="{ 'active': selectedChallenge === 'deadlines' }"
         @click="selectChallenge('deadlines')"
       >
@@ -63,8 +63,8 @@ const selectChallenge = (challengeId: string) => {
         <span>Deadlines</span>
       </button>
 
-      <button 
-        class="challenge-button" 
+      <button
+        class="challenge-button"
         :class="{ 'active': selectedChallenge === 'requirements' }"
         @click="selectChallenge('requirements')"
       >
@@ -96,7 +96,7 @@ const selectChallenge = (challengeId: string) => {
   background-color: var(--dark-background);
   color: var(--light-text);
   padding: 20px;
-  overflow-y: auto; 
+  overflow-y: auto;
 
   h1 {
     font-size: 2.5em;
@@ -110,9 +110,9 @@ const selectChallenge = (challengeId: string) => {
 
 .challenge-buttons-container {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; 
+  gap: 20px;
   margin-bottom: 30px;
   width: 100%;
   max-width: 900px;
@@ -191,42 +191,73 @@ const selectChallenge = (challengeId: string) => {
 }
 
 @media (max-width: 768px) {
-  .insights-page-container h1 {
-    font-size: 2em;
-    margin-bottom: 30px;
+  .insights-page-container {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+      h1 {
+      font-size: 1.8em; 
+      font-weight: bold;
+      color: var(--accent-teal);
+      margin-bottom: 10px; 
+      text-align: center;
+      width: 100%;
+      white-space: normal; 
+    }
   }
+
   .challenge-buttons-container {
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
   }
   .challenge-button {
-    width: 80%;
-    max-width: 300px;
+    width: 90%;
+    max-width: 280px;
+    padding: 12px 20px;
+    font-size: 1em;
+    gap: 8px;
+    .button-icon {
+      width: 32px;
+      height: 32px;
+    }
   }
   .description-section {
-    padding: 25px;
+    padding: 20px;
+    height: auto;
+    max-width: 95%;
     p {
-      font-size: 1em;
+      font-size: 0.9em;
+      line-height: 1.5;
     }
   }
 }
 
 @media (max-width: 480px) {
+  .insights-page-container {
+    padding: 10px;
+  }
   .insights-page-container h1 {
-    font-size: 1.8em;
+    font-size: 1.4em; 
+    margin-bottom: 15px;
+    white-space: normal; 
   }
   .challenge-button {
-    padding: 12px 20px;
-    font-size: 1em;
+    width: 95%;
+    padding: 10px 15px;
+    font-size: 0.9em;
     .button-icon {
-      width: 35px;
-      height: 35px;
+      width: 28px;
+      height: 28px;
     }
   }
   .description-section {
-    padding: 20px;
+    padding: 10px;
+    width: 80%;
     p {
-      font-size: 0.9em;
+      font-size: 0.8em;
+      line-height: 1.4;
     }
   }
 }

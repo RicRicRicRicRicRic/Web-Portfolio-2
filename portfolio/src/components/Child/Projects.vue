@@ -3,7 +3,7 @@ import { ref } from 'vue';
 const arrowRightIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/arrow-right-circle.svg";
 const arrowLeftIcon = "https://unpkg.com/feather-icons@4.29.2/dist/icons/arrow-left-circle.svg";
 
-const githubIcon = "https://simpleicons.org/icons/github.svg"; 
+const githubIcon = "https://simpleicons.org/icons/github.svg";
 
 const currentSlide = ref(0);
 
@@ -14,54 +14,54 @@ import groceryPOS_img from '@/assets/Grocery.png'
 import wanderer_img from '@/assets/Wanderer.png'
 
 const slidesData = ref([
-  { 
-    id: 1, 
-    image: coffeeShop_img, 
+  {
+    id: 1,
+    image: coffeeShop_img,
     title: 'Project-DCIT25-CoffeeShop',
     description: 'A point-of-sale system for coffee shops with built in employee management system developed using C# and .NET frameworks.',
     tools: 'C#, .NET',
     githubLink: 'https://github.com/RicRicRicRicRicRic/Project-DCIT25-CoffeeShop',
     githubIcon: githubIcon
   },
-  { 
-    id: 2, 
-    image: crossword_img, 
+  {
+    id: 2,
+    image: crossword_img,
     title: 'Crossword-Puzzle-Game',
     description: 'A web-based crossword puzzle game featuring game creator and user interaction.',
     tools: 'Vue.js, ExpressJS',
     githubLink: 'https://github.com/RicRicRicRicRicRic/Crossword-Puzzle-Game',
     githubIcon: githubIcon
   },
-  { 
-    id: 3, 
-    image: dodgeCreeps_img, 
+  {
+    id: 3,
+    image: dodgeCreeps_img,
     title: 'Dodge-the-creeps',
     description: 'A classic 2D game developed to explore game development principles and engine capabilities.',
     tools: 'Godot Engine, GDScript',
     githubLink: 'https://github.com/RicRicRicRicRicRic/Dodge-the-creeps',
     githubIcon: githubIcon
   },
-  { 
-    id: 4, 
-    image: groceryPOS_img, 
+  {
+    id: 4,
+    image: groceryPOS_img,
     title: 'GroceryPOS',
     description: 'A comprehensive point-of-sale system designed for grocery store management and inventory.',
     tools: 'C#, .NET',
     githubLink: 'https://github.com/RicRicRicRicRicRic/GroceryPOS',
     githubIcon: githubIcon
   },
-  { 
-    id: 5, 
-    image: wanderer_img, 
+  {
+    id: 5,
+    image: wanderer_img,
     title: 'Leviathan-Wanderer',
     description: 'An ongoing 2D rogue-like game project focusing on procedural generation and challenging gameplay.',
     tools: 'Godot Engine, GDScript',
-    githubLink: 'https://github.com/RicRicRicRicRicRic/Leviathan-Wanderer', 
+    githubLink: 'https://github.com/RicRicRicRicRicRic/Leviathan-Wanderer',
     githubIcon: githubIcon
   },
 ]);
 
-const totalSlides = slidesData.value.length; 
+const totalSlides = slidesData.value.length;
 
 const prevSlide = () => {
   currentSlide.value = (currentSlide.value - 1 + totalSlides) % totalSlides;
@@ -92,10 +92,19 @@ const nextSlide = () => {
         </div>
       </div>
 
-      <button @click="prevSlide" class="nav-arrow left-arrow">
+      <button @click="prevSlide" class="nav-arrow left-arrow desktop-only">
         <img :src="arrowLeftIcon" alt="Previous Slide">
       </button>
-      <button @click="nextSlide" class="nav-arrow right-arrow">
+      <button @click="nextSlide" class="nav-arrow right-arrow desktop-only">
+        <img :src="arrowRightIcon" alt="Next Slide">
+      </button>
+    </div>
+
+    <div class="slideshow-controls-mobile">
+      <button @click="prevSlide" class="nav-arrow left-arrow mobile-only">
+        <img :src="arrowLeftIcon" alt="Previous Slide">
+      </button>
+      <button @click="nextSlide" class="nav-arrow right-arrow mobile-only">
         <img :src="arrowRightIcon" alt="Next Slide">
       </button>
     </div>
@@ -126,29 +135,29 @@ const nextSlide = () => {
 .slides-wrapper {
   display: flex;
   height: 100%;
-  width: calc(100% * 5); 
+  width: calc(100% * 5);
   transition: transform 0.6s ease-in-out;
-  will-change: transform; 
+  will-change: transform;
 }
 
 .slide {
   flex-shrink: 0;
-  width: calc(100% / 5); 
+  width: calc(100% / 5);
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3em;
   color: var(--light-text);
-  background-color: var(--dark-background); 
+  background-color: var(--dark-background);
   box-sizing: border-box;
   text-align: center;
   padding: 20px;
-  position: relative; 
+  position: relative;
   overflow: hidden;
   .slide-content{
-    z-index: 2; 
-    position: relative; 
+    z-index: 2;
+    position: relative;
     opacity: 0.90;
     width: 70%;
     height: 45%;
@@ -179,29 +188,29 @@ const nextSlide = () => {
         padding: 6px 12px;
         border-radius: 15px;
         cursor: pointer;
-        display: flex; 
-        align-items: center; 
+        display: flex;
+        align-items: center;
         gap: 20px;
-        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
-        font-size: 28px; 
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        font-size: 28px;
         text-decoration: none;
         img{
-          width: 25px; 
+          width: 25px;
           height: 25px;
-          filter: var(--img--accent-teal); 
+          filter: var(--img--accent-teal);
         }
         p{
-          margin: 0; 
-          color: inherit; 
+          margin: 0;
+          color: inherit;
         }
 
         &:hover {
           background-color: var(--accent-teal-hover);
           color: var(--dark-background);
-          border-color: var(--accent-teal-hover); 
-          box-shadow: 0 0 10px var(--accent-teal); 
+          border-color: var(--accent-teal-hover);
+          box-shadow: 0 0 10px var(--accent-teal);
           img {
-            filter: var(--inmg--dark-bg); 
+            filter: var(--inmg--dark-bg);
           }
         }
       }
@@ -218,13 +227,13 @@ const nextSlide = () => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: filter 0.3s ease-in-out; 
-  filter: blur(0px); 
-  z-index: 1; 
+  transition: filter 0.3s ease-in-out;
+  filter: blur(0px);
+  z-index: 1;
 }
 
 .slide:hover .slide-background {
-  filter: blur(5px); 
+  filter: blur(5px);
 }
 
 
@@ -260,5 +269,95 @@ const nextSlide = () => {
 
 .right-arrow {
   right: 10px;
+}
+
+.slideshow-controls-mobile {
+  display: none;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+
+@media (max-width: 768px) {
+  .slideshow-container {
+    height: 70%;
+    width: 85%;
+    padding: 0;
+    box-shadow: none;
+    overflow-x: hidden;
+  }
+
+  .slides-wrapper {
+    height: 100%;
+    width: calc(100% * 5);
+  }
+
+  .slide {
+    padding: 10px;
+    width: calc(100% / 5);
+    height: 100%;
+    .slide-content {
+      width: 70%;
+      height: auto;
+      padding: 10px;
+      h6 {
+        font-size: 0.4em;
+        margin-top: 5px;
+      }
+      p {
+        font-size: 0.35em;
+        margin: 4px;
+      }
+      span {
+        font-size: 0.75em;
+      }
+      .github-link {
+        a {
+          padding: 3px 6px;
+          font-size: 0.6em;
+          gap: 8px;
+          img {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .slideshow-controls-mobile {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 15px;
+    position: relative;
+  }
+
+  .nav-arrow {
+    position: static;
+    transform: none;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
 }
 </style>
